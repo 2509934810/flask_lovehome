@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+    <ul>
+        {% if g.user %}
+            <li><span>{{ g.user['username'] }}</span></li>
+            <li><a href="{{ url_for('auth.logout') }}">logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('auth.login') }}">login</a></li>
+            <li><a href="{{ url_for('auth.register') }}">register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<section>
+    <head>
+        {% block head %}{% endblock %}
+    </head>
+    {% for message in get_flashed_messages() %}
+        <h1>{{message}}</h1>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</section>
