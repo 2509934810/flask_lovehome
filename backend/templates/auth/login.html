@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 <h1>hello</h1>
-{% block content %}
 
-    <form method="post">
+{% block style %}
+<style>
+    body{
+        background-image: url("{{ url_for('static', filename='img/home_backend.jpg') }}");
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post" class="form-group">
         <label for="">Username</label>
         <input type="text" id="username" name="username">
         <label for="password">Password</label>
         <input type="password" id="password" name="password">
         <input type="submit" value="login">
     </form>
-
+</div>
 {% endblock %}

@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}<h1>Register</h1>{% endblock %}
+{% block title %}
+    Register
+{% endblock %}
+
+{% block style %}
+<style>
+    body{
+        background-image: url("{{ url_for('static', filename='img/home_backend.jpg') }}");
+    }
+</style>
+{% endblock %}
 
 {% block content %}
 <form method="post">

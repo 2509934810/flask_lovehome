@@ -1,3 +1,12 @@
 {% extends 'base.html' %}
 
-<h1>you have login</h1>
+{% block style %}
+<style>
+    body{
+        background-image: url("{{ url_for('static', filename='img/home_backend.jpg') }}");
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container"></div>
+{% endblock %}
