@@ -9,3 +9,15 @@
 
 # def init_db():
 #     metadata.create_all(bind=engine)
+
+from flask_sqlalchemy import SQLAlchemy
+from flask.cli import with_appcontext
+import click
+
+db = SQLAlchemy()
+
+
+@click.command('db-init')
+@with_appcontext
+def init_db(app):
+    db.init_app()

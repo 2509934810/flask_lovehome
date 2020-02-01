@@ -1,9 +1,10 @@
-from flask import request, redirect, render_template, url_for
+from flask import request, redirect, render_template, url_for, flash, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import g
 
 from backend.auth import auth_bp
-# from backend.models import User
+from backend.models import User
+from backend import db
 
 @auth_bp.route('/login', methods=("GET", "POST"))
 def login():
@@ -15,10 +16,15 @@ def login():
             error = 'Username is required'
         elif password is None:
             error = 'Password is required'
-        if error:
-            db_userinfo = User.query.filter_by(username = username).first()
-            if db_username:
-                if check_password_hash(db_userinfo['password'], password):
-                    return redirect(url_for('index'))
-        return redirect('you have login')
+        else:
+            db_userinfo = User.query.filter_by(username=username).first()
+            if db_userinfo is None:
+                error = 'user not exist'
+            elif check_password_hash(db_userinfo.password, password):
+                session['user_id'] = db_userinfo.id
+                return redirect(url_for('index'))
+            else:
+                error = 'password error'
+        flash(error)
+        return redirect(url_for('auth.login'))
     return render_template('auth/login.html')
