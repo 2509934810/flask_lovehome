@@ -16,8 +16,6 @@ def init_app(app):
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-    database_config = os.path.join(app.instance_path, 'demo_1.sqlite')
-    app.config.from_mapping(DATABASE=database_config, SECRET_KEY="1234")
     if test_config:
         app.config.from_mapping(test_config)
     else:
