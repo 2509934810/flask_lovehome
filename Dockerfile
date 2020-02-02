@@ -1,11 +1,15 @@
 FROM python:3.7
 
-COPY ./* /workspace/lovehome/flask_demo_1/
+WORKDIR /workspace/lovehome/
+
+COPY .ssh/* /root/.ssh/
+
+RUN git clone git@github.com:2509934810/flask_demo_1.git && cd flask_demo_1/ && pip3 install -r requirements.txt
+
+RUN rm -rf /root/.ssh/
 
 WORKDIR /workspace/lovehome/flask_demo_1/
 
-RUN cd /workspace/lovehome/flask_demo_1/ && pip3 install -r requirements.txt
-
 EXPOSE 5000
-
-CMD ["/bin/bash", "python3 setup.py"]
+EXPOSE 5001
+CMD ["flask", "run", "-h", "0.0.0.0"]

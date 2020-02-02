@@ -1,0 +1,14 @@
+version: 3
+
+services:
+  web:
+    image: flask_demo:1.0
+    volumes:
+      - ~/.ssh/:/root/.ssh/
+    ports:
+      - 80:5000
+    links: 
+      - db
+  db:
+    image: mysql:latest
+    d
