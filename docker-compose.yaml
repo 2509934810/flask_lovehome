@@ -1,14 +1,16 @@
-version: 3
-
+version: '3'
 services:
   web:
-    image: flask_demo:1.0
-    volumes:
-      - ~/.ssh/:/root/.ssh/
+    image: leijiangtao/flask_lovehome:1.1
+    container_name: flask_app
     ports:
       - 80:5000
-    links: 
+    depends_on: 
       - db
   db:
     image: mysql:latest
-    d
+    environment: 
+      - "MYSQL_ROOT_PASSWORD=lei123"
+      - "MYSQL_DATABASE=lei"
+    ports:
+      - 3306:3306

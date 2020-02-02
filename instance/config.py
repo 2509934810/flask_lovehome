@@ -13,7 +13,7 @@ DIALECT = 'mysql'
 DRIVER = 'pymysql'
 USERNAME = 'root'
 PASSWORD = 'lei123'
-HOST = '127.0.0.1'
+HOST = 'db'
 PORT = 3306
 DATABASE = 'lei'
 
