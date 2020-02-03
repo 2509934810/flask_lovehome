@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  nginx_server:
+    image: nginx
+    ports:
+      - 80:80
+    networks:
+      - net
+  jenkins_server:
+    image: jenkins:latest
+    networks:
+      - net
+    
+networks:
+  - net
