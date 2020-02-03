@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import click
 from flask.cli import with_appcontext
+from instance.config import DevConfig
 
 db = SQLAlchemy()
 
@@ -19,7 +20,7 @@ def create_app(test_config=None):
     if test_config:
         app.config.from_mapping(test_config)
     else:
-        app.config.from_pyfile("config.py", silent=False)
+        app.config.from_object(DevConfig)
     try:
         os.makedirs(app.instance_path)
     except OSError:
