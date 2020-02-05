@@ -5,25 +5,35 @@ import os
 from . import auth_bp
 from backend.models import User
 from backend import db
+import random
 
-@auth_bp.route('/register', methods=("GET", "POST"))
+
+@auth_bp.route("/register", methods=("GET", "POST"))
 def register():
     error = None
     if request.method == "POST":
         username = request.form["username"]
+        account = request.form["account"]
         password = request.form["password"]
         if username is None:
-            error = 'username is required'
+            error = "username is required"
+        elif account is None:
+            error = "account is required"
         elif password is None:
-            error = 'password is required'
+            error = "password id required"
         else:
-            if User.query.filter_by(username=username).first():
-                error = 'username have existed'
+            if User.query.filter_by(account=account).first():
+                error = "username have existed"
             else:
-                user = User(username=username, password = generate_password_hash(password))
+                user = User(
+                    account=account,
+                    username=username,
+                    password=generate_password_hash(password),
+                    level=1,
+                )
                 db.session.add(user)
                 db.session.commit()
-                flash('you have registed')
-                return redirect(url_for('auth.login'))
+                flash("you have registed")
+                return redirect(url_for("auth.login"))
         flash(error)
-    return render_template('auth/register.html')
+    return render_template("auth/register.html")
