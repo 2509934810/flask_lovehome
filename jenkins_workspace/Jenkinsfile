@@ -1,0 +1,30 @@
+pipeline{
+    options{
+    
+    }
+    stages{
+        stage('init'){
+        
+        }
+        stage('build'){
+        
+        }
+        stage('ut'){
+        
+        }
+        stage('security'){
+        
+        }
+        stage('push'){
+        
+        }
+    }
+    post{
+        success{
+        
+        }
+    failure{
+    
+    }
+    }
+}
