@@ -14,5 +14,5 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=lei123"
       - "MYSQL_DATABASE=lei"
-    ports:
-      - 3306:3306
+    expose:
+      - 3600
