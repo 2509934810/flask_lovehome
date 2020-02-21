@@ -1,7 +1,5 @@
 pipeline{
-    options{
-    
-    }
+    agent any
     stages{
         stage('init'){
         
