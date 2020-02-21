@@ -2,14 +2,24 @@ FROM python:3.7
 
 WORKDIR /workspace/lovehome/
 
-COPY .ssh/* /root/.ssh/
+# COPY .ssh/* /root/.ssh/
 
-RUN git clone git@github.com:2509934810/flask_demo_1.git && cd flask_demo_1/ && pip3 install -r requirements.txt
+# RUN git clone git@github.com:2509934810/flask_demo_1.git && cd flask_demo_1/ && pip3 install -r requirements.txt
 
-RUN rm -rf /root/.ssh/
+# RUN rm -rf /root/.ssh/
 
-WORKDIR /workspace/lovehome/flask_demo_1/
+# WORKDIR /workspace/lovehome/flask_demo_1/
+
+RUN apt update && apt install -y pipenv
+
+COPY Pipfile Pipfile.lock ./
+
+RUN pipenv install --system --dev
+
+COPY . .
+
+ENTRYPOINT [ "flask" ]
 
 EXPOSE 5000
 EXPOSE 5001
-CMD ["flask", "run", "-h", "0.0.0.0"]
+CMD ["--help"]
