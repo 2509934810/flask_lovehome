@@ -2,27 +2,38 @@ pipeline{
     agent any
     stages{
         stage('init'){
-        
+            steps{
+                println "hello init"
+            }
         }
         stage('build'){
-        
+            steps{
+                println "hello build"
+            }
         }
         stage('ut'){
+            steps{
+                println "hello ut"
+            }
         
         }
         stage('security'){
-        
+            steps{
+                println "hello security"
+            }
         }
         stage('push'){
-        
+            steps{
+                println "hello push"
+            }
         }
     }
     post{
         success{
-        
+            println "seccuess"
         }
     failure{
-    
+            println "fail"
     }
     }
 }
