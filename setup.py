@@ -1,7 +1,12 @@
+from setuptools import find_packages, setup
 
-
-from backend import create_app
-
-if __name__ == '__main__':
-    app = create_app()
-    app.run(host=0.0.0.0, port=5000)
+setup(
+    name="lovehome",
+    version="1.0.1",
+    packages = find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=[
+        'flask',
+    ]
+)
