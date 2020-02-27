@@ -12,12 +12,9 @@ import random
 def register():
     error = None
     if request.method == "POST":
-        username = request.form["username"]
         account = request.form["account"]
         password = request.form["password"]
-        if username is None:
-            error = "username is required"
-        elif account is None:
+        if account is None:
             error = "account is required"
         elif password is None:
             error = "password id required"
@@ -25,11 +22,11 @@ def register():
             if User.query.filter_by(account=account).first():
                 error = "username have existed"
             else:
-                user = User(
+                user = User()
+                user.createUser(
                     account=account,
-                    username=username,
                     password=generate_password_hash(password),
-                    level=1,
+                    role="USER_LOW",
                 )
                 db.session.add(user)
                 db.session.commit()

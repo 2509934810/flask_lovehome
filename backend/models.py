@@ -4,6 +4,16 @@ from backend import db
 
 
 class User(db.Model):
+    LEVEL = {
+        "USER_LOW": 1,
+        "USER_MID": 2,
+        "USER_HIG": 4,
+        "MANAGE_LOW": 8,
+        "MANAGE_MID": 16,
+        "MANAGE_HIG": 32,
+        "ADMIN": 64,
+    }
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     account = db.Column(db.String(20), nullable=False, unique=True)
     username = db.Column(db.String(80), nullable=False)
@@ -18,6 +28,18 @@ class User(db.Model):
 
     def __repr__(self):
         return "<Post %r>" % self.title
+
+    def createUser(self, account, password, role):
+        self.account = account
+        self.password = password
+        self.level = self.LEVEL.get(role)
+        self.username = account
+
+    def addPermission(self, role):
+        self.level = self.LEVEL.get(role)
+
+    def revertPermission(self):
+        self.level = self.LEVEL.get("USER_LOW")
 
 
 class Info(db.Model):
