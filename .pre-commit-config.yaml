@@ -3,13 +3,13 @@ repos:
     rev: stable
     hooks:
       - id: black
-        language_version: python3.7
+        language_version: python3.6.9
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.4.0
     hooks:
       # - id: flake8
       - id: trailing-whitespace
       - id: detect-private-key
-      - id: detect-aws-credentials
+      # - id: detect-aws-credentials
 
 exclude: (docs/|examples/|tests/|setup.py)

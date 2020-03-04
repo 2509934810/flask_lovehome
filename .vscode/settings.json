@@ -1,3 +1,11 @@
 {
-    "python.pythonPath": "/Users/jlei-ext/.local/share/virtualenvs/flask_demo_1-g3ot0nKy/bin/python"
+    "python.pythonPath": "/home/lei/workspace/flask_demo_1/venv/bin/python3",
+    "sqltools.connections": [
+        {
+            "database": "${workspaceFolder}/tmp/test.db",
+            "dialect": "SQLite",
+            "name": "dev_lovehome"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }
