@@ -10,7 +10,7 @@ h1, h2, h3{ font-size: 16px;}
 .l{float: left;}
 .r{float: right;}
 body{background-color: lightyellow;}
-#top{height: 60px; margin-top: 2px; min-width: 480px; position: relative;}
+#top{height: 60px; margin-top: 2px; min-width: 480px; position: relative; font-weight: bold;}
 #logo{width: 40; height: 40px; margin-top: 10px; margin-left: 30px;}
 
 #menu{line-height: 60px; font-size: 20px; margin-left: 100px;}

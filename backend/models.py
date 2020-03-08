@@ -41,6 +41,10 @@ class User(db.Model):
     def revertPermission(self):
         self.level = self.LEVEL.get("USER_LOW")
 
+    @staticmethod
+    def checkRoot(DbLevel, UserLevel):
+        return DbLevel == UserLevel
+
 
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

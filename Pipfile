@@ -10,6 +10,11 @@ flask = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
 pymysql = "*"
+flask-redis = "*"
+flask-celery = "*"
+celery = "*"
+flask-celery-helper = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.6.9"

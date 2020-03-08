@@ -1,0 +1,83 @@
+{% extends 'User/base.html' %}
+
+{% block title%}
+    <title>我的资料</title>
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/common.css')}}">
+    <style>
+        .MainView{position: relative; background-color: blanchedalmond; height: 980px;}
+        .MainView .leftSideBar{position:absolute; left: 30px; width: 200px; height: 600px; border-right:1px solid gray; background-color: lightskyblue;}
+        .MainView .leftSideBar li{margin-top: 30px; width: 200px; height: 40px; text-align: center;}
+        .MainView .leftSideBar a{text-align: center; display: block; width: 100%; height: 100%;
+            background-color: lightseagreen; line-height: 40px;}
+        .MainView .leftSideBar a:hover{border: 1px solid blue;}
+        #bottom{width: 100%;}
+        #bottom div{width: 100%; margin: 0 auto; position: relative;}
+    </style>
+{% endblock %}
+
+{% block content %}
+<div id="top">
+    <div id="logo" class="l">
+      <a href="/">
+        <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+      </a>
+    </div>
+    <div id="top_title">
+    </div>
+    <div id="menu" class="l">
+      <ul>
+        <li><a href="/">首页</a></li>
+        <li><a href="#">家政</a></li>
+        <li><a href="#">月嫂</a></li>
+        <li><a href="#">租房</a></li>
+        <li><a href="#">技术支持</a></li>
+      </ul>
+    </div>
+    <div class="Loginmenu r">
+      <ul>
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        <li><span>{{ g.user['username'] }}</span></li>
+        </li>
+      </ul>
+    </div>
+</div>
+
+<div class="MainView container-fluid">
+    <div class="leftSideBar">
+        <ul>
+            <li>
+                <a href = "#">我的资料</a>
+            </li>
+            <li>
+                <a href="#">账号安全</a>
+            </li>
+            <li>
+                <a href="#">我的服务</a>
+            </li>
+            <li>
+                <a href="#">资金往来</a>
+            </li>
+            <li>
+                <a href="#">其他问题</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="bottom" class="container-fluid">
+  <div class="container">
+    <p>Copyright by Lovehome 2020</p>
+    <a href="#">合作</a>
+    <a href="#">招聘|</a>
+    <a href="#">投资|</a>
+    <a href="#">技术支持|</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

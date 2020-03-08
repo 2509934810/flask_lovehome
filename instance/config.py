@@ -1,9 +1,17 @@
 import os
+from datetime import timedelta
 
 
 class BaseConfig(object):
     DEBUG = True
     DATA_PER_PAGE = 6
+    CELERY_BROKER_URL = ("redis://localhost:6379/1",)
+    CELERY_RESULT_BACKEND = "redis://localhost:6379/2"
+    CELERYBEAT_SCHEDULE = {
+        # 定义任务名称：import_data
+        # 执行规则：每600秒运行一次
+        "import_data": {"task": "import_data", "schedule": timedelta(seconds=600)},
+    }
 
 
 class DevConfig(BaseConfig):
