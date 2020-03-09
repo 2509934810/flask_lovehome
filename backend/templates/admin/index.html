@@ -1,0 +1,67 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}
+<title>后台管理</title>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="../../static/css/common.css">
+
+<style>
+    #MainView .Main{width: 1080px; height: 900px; position: relative; margin-top: 10px;}
+    #MainView .Main table{width: 100%;}
+    #MainView .Main table tr{height: 30px;}
+    #MainView .Main table tr td{text-align: center;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="MainView" class="l">
+    <div class="topBar clear">
+        <div class="Show l">
+            <ul>
+                <li><a>整合</a></li>
+                <li><a></a></li>
+                <li><a></a></li>
+                <li><a></a></li>
+            </ul>
+        </div>
+        <div class="explore l">
+            <input type="text" placeholder="请输入搜索的编号">
+            <a href="">搜索</a>
+        </div>
+        <ul class="CRUD l">
+            <li>
+                <a href="/admin/user/add">添加</a>
+            </li>
+            <li><a>删除</a></li>
+            <li><a>修改</a></li>
+        </ul>
+    </div>
+    <div class="Main l">
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>账号</td>
+                <td>用户名</td>
+                <td>邮箱</td>
+                <td>手机号</td>
+                <td>注册日期</td>
+            </tr>
+            {% if users%}
+                {% for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.account}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.telephone}}</td>
+                        <td>{{user.pub_date}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock %}
+

@@ -5,6 +5,15 @@
             "database": "${workspaceFolder}/tmp/test.db",
             "dialect": "SQLite",
             "name": "dev_lovehome"
+        },
+        {
+            "database": "lei",
+            "dialect": "MariaDB",
+            "name": "lovehome",
+            "password": "lei123456",
+            "port": 3306,
+            "server": "localhost",
+            "username": "lei"
         }
     ],
     "sqltools.useNodeRuntime": true

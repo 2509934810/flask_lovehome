@@ -27,7 +27,7 @@ class User(db.Model):
     salary_info = db.relationship("Salary", backref="user", lazy="dynamic")
 
     def __repr__(self):
-        return "<Post %r>" % self.title
+        return "<Post %r>" % self.account
 
     def createUser(self, account, password, role):
         self.account = account

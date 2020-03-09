@@ -3,7 +3,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import click
 from flask.cli import with_appcontext
-from instance.config import DevConfig
+from instance.config import DevConfig, ProConfig
 from flask_redis import FlaskRedis
 from flask_celery import Celery
 
@@ -27,7 +27,7 @@ def create_app(test_config=None):
     if test_config:
         app.config.from_mapping(test_config)
     else:
-        app.config.from_object(DevConfig)
+        app.config.from_object(ProConfig)
     try:
         os.makedirs(app.instance_path)
     except OSError:

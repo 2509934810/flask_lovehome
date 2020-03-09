@@ -29,10 +29,11 @@ class ProConfig(BaseConfig):
     PASSWORD = os.environ.get("PASSWORD")
     HOST = os.environ.get("HOST")
     PORT = os.environ.get("PORT")
-    DATABASE = "lovehome"
-    SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8mb4".format(
+    DATABASE = os.environ.get("DATABASE")
+    URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8mb4".format(
         DIALECT, DRIVER, USERNAME, PASSWORD, HOST, PORT, DATABASE
     )
+    SQLALCHEMY_DATABASE_URI = URI
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_RECORD_QUERIES = True
