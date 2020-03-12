@@ -31,5 +31,5 @@ body{background-color: lightyellow;}
 #top .MainInfo{width: 100px; position: relative; right: 30px; top: -45px; line-height: 50px;}
 #top .MainInfo ul {display: none;}
 #top .MainInfo:hover ul{display: block;}
-#top .MainInfo li a{display: block; width: 100%; height: 100%;}
+#top .MainInfo li a{display: block; width: 100%; height: 100%; text-align: center;}
 #top .MainInfo li:hover {background-color: gray;}

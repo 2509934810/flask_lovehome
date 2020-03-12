@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../../static/css/common.css">
 
 <style>
-    #MainView .Main{width: 1080px; height: 900px; position: relative; margin-top: 10px;}
+    #MainView .Main{width: 100%; height: 900px; position: relative; margin-top: 10px;}
     #MainView .Main table{width: 100%;}
     #MainView .Main table tr{height: 30px;}
     #MainView .Main table tr td{text-align: center;}
@@ -21,47 +21,126 @@
         <div class="Show l">
             <ul>
                 <li><a>整合</a></li>
-                <li><a></a></li>
-                <li><a></a></li>
-                <li><a></a></li>
+                <li><select name="selectLevel" style="width: 40px; margin-top: 10px;" onchange="window.location=this.value">
+                    <option disabled>请选择</option>
+                    <option value="{{url_for('admin.indexs', userType='USER_LOW')}}">普通用户</option>
+                    <option value="{{url_for('admin.indexs', userType='USER_LOW')}}">普通用户</option>
+                    <option value="{{url_for('admin.indexs', userType='USER_MID')}}">高级用户</option>
+                    <option value="{{url_for('admin.indexs', userType='USER_HIG')}}">VIP用户</option>
+                    <option value="{{url_for('admin.indexs', userType='MANAGE_LOW')}}">普通员工</option>
+                    <option value="{{url_for('admin.indexs', userType='MANAGE_MID')}}">经理</option>
+                    <option value="{{url_for('admin.indexs', userType='MANAGE_HIG')}}">技术总监</option>
+                    <option value="{{url_for('admin.indexs', userType='ADMIN')}}">ADMIN</option>
+                    </select>
+                </li>
+                <li>
+                    <span>num:{{userNum}}</span>
+                </li>
             </ul>
         </div>
         <div class="explore l">
-            <input type="text" placeholder="请输入搜索的编号">
-            <a href="">搜索</a>
+            <input type="text" placeholder="请输入搜索的编号" id="searchId">
+            <a id="runSearch">搜索</a>
         </div>
         <ul class="CRUD l">
             <li>
                 <a href="/admin/user/add">添加</a>
             </li>
-            <li><a>删除</a></li>
+            <li><a id="deleteUser">删除</a></li>
             <li><a>修改</a></li>
         </ul>
     </div>
     <div class="Main l">
         <table border="1">
             <tr>
+                <td><input type="checkbox" id="MainCheck"></td>
                 <td>ID</td>
                 <td>账号</td>
                 <td>用户名</td>
+                <td>等级</td>
                 <td>邮箱</td>
                 <td>手机号</td>
+                <td>激活</td>
                 <td>注册日期</td>
             </tr>
             {% if users%}
                 {% for user in users %}
-                    <tr>
+                    <tr class="tableData">
+                        <td><input type="checkbox" name="check" id="{{user.id}}"></td>
                         <td>{{user.id}}</td>
                         <td>{{user.account}}</td>
                         <td>{{user.username}}</td>
+                        <td>{{user.level}}</td>
                         <td>{{user.email}}</td>
                         <td>{{user.telephone}}</td>
+                        <td>{{user.actived}}</td>
                         <td>{{user.pub_date}}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
         </table>
+        <div>
+            {% if curPage == 0 %}
+                <a disabled>上一页</a>
+            {% else %}
+                <a href="{{url_for('admin.indexs')}}">上一页</a>
+            {% endif %}
+            {% if curPage + 16 < userNum %}
+                <a href="{{request.path}}?&userType={{curType}}&num={{curPage+16}}">下一页</a>
+            {% else %}
+                <a disabled>下一页</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
 
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script>
+    // if (searchId == ''){
+    //     $("#runSearch").attr("disabled", true);
+    // }else{
+    //     $("#runSearch").removeAttr("disabled");
+    // }
+    $("#runSearch").on('click', function(){
+        var searchId = $("#searchId").val();
+        if (searchId == ""){
+            alert('请输入数值');
+        }
+        else{
+            var curHref = window.location.protocol +"//" + window.location.host + window.location.pathname;
+            window.location=curHref + "?" + "selectId=" + searchId;
+        }
+    })
+    $(document).ready(function(){
+        $("#deleteUser").on('click', function () {
+            var checkidList = document.getElementsByName("check");
+            var idList = [];
+            for (k in checkidList){
+                if(checkidList[k].checked){
+                    console.log(checkidList[k].id);
+                    idList.push(checkidList[k].id);
+                }
+            }
+            if (idList.length == 0){
+                alert("操作违法");
+            }else{
+                var curHref = window.location.protocol +"//" + window.location.host + "/admin/delete/user";
+                alert("确定删除"+ idList);
+                window.location=curHref + "?IdList=" + idList;
+            }
+
+        });
+    })
+        // var allcheckBool = document.getElementById("MainChecked");
+        // if (allcheckBool.checked){
+        //     console.log('sd');
+        //     var checkidList = document.getElementsByName("check");
+        //         var idList = [];
+        //     for (checkid in checkidList){
+        //         checkidList[checkid].setAttribute("checked", true);
+        //     }
+        // }
+</script>
+{% endblock %}

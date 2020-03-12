@@ -25,6 +25,7 @@ class User(db.Model):
     # head_photo = db.relationship('Photo', backref='user', lazy='dynamic')
     extra_info = db.relationship("Info", backref="user", lazy="dynamic")
     salary_info = db.relationship("Salary", backref="user", lazy="dynamic")
+    actived = db.Column(db.Boolean, nullable=False, default=False)
 
     def __repr__(self):
         return "<Post %r>" % self.account

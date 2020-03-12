@@ -14,7 +14,7 @@ admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 from .index import indexs
 from .UserCrud import addUser
 
-# @celery.task()
+# 随机生成url 调用celery给管理员发送邮件
 def create_randomurl():
     BaseUrl = sha1().hexdigest()
     sendMail.delay(
@@ -26,16 +26,6 @@ def create_randomurl():
         subject="authentical_email",
         address="2509934810@qq.com",
     )
-    # client = SendMail(
-    #     text="Dear admin your login url is http://127.0.0.1:5000/admin/{}/login".format(
-    #         BaseUrl
-    #     ),
-    #     sender="qq2509934810@163.com",
-    #     receiver="mr zhang",
-    #     subject="authentical_email",
-    #     address="2509934810@qq.com",
-    # )
-    # client.send()
     return BaseUrl
 
 
@@ -48,7 +38,14 @@ def index():
 
 @admin_bp.before_request
 def checkIfRoot():
-    if request.url != "/admin":
+    AllowUrl = []
+    AllowUrl.append(
+        "{}/admin/{}/login".format(
+            "http://127.0.0.1:5000", redis_store.get("loginRoute").decode("utf-8")
+        )
+    )
+    AllowUrl.append("{}/admin".format("http://127.0.0.1:5000"))
+    if request.url not in AllowUrl:
         userId = session.get("user_id")
         if userId:
             user = User.query.filter_by(id=userId).first()
@@ -79,6 +76,7 @@ def login(route):
             return redirect(url_for("auth.login"))
     else:
         acceptRoute = redis_store.get("loginRoute").decode("utf-8")
+        print("l")
         if route == acceptRoute:
             return render_template("admin/login.html")
         else:

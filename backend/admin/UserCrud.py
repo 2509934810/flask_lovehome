@@ -21,3 +21,20 @@ def addUser():
         return redirect(url_for("admin.indexs"))
     else:
         return render_template("admin/addUser.html")
+
+
+@admin_bp.route("/delete/user", methods=["POST", "GET"])
+def deleteUser():
+    deleteIdStr = request.args.get("IdList")
+    if deleteIdStr:
+        deleteIdList = [int(id) for id in deleteIdStr.split(",")]
+        # print(deleteId, type(deleteId))
+        for deleteId in deleteIdList:
+            user = User.query.filter_by(id=deleteId).first()
+            if user is None:
+                continue
+            db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for("admin.indexs"))
+    else:
+        return redirect(url_for("admin.indexs"))
