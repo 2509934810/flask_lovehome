@@ -26,15 +26,18 @@ class User(db.Model):
     extra_info = db.relationship("Info", backref="user", lazy="dynamic")
     salary_info = db.relationship("Salary", backref="user", lazy="dynamic")
     actived = db.Column(db.Boolean, nullable=False, default=False)
+    loginInfo = db.relationship("loginTb", backref="user", lazy="dynamic")
+    sex = db.Column(db.Boolean, nullable=False)
+    age = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):
         return "<Post %r>" % self.account
 
-    def createUser(self, account, password, role):
+    def createUser(self, account, password, role, username):
         self.account = account
         self.password = password
         self.level = self.LEVEL.get(role)
-        self.username = account
+        self.username = username
 
     def addPermission(self, role):
         self.level = self.LEVEL.get(role)
@@ -63,3 +66,14 @@ class Salary(db.Model):
 
 
 # add worker table
+
+
+class loginTb(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    loginTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    loginSite = db.Column(db.Text, nullable=False, default="shanxi")
+
+    def createData(self, userId, loginSite):
+        self.user_id = userId
+        self.loginSite = loginSite

@@ -5,79 +5,94 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{{url_for('static', filename = 'css/common.css')}}">
     <style>
-        .MainView{position: relative; background-color: blanchedalmond; height: 980px;}
-        .MainView .leftSideBar{position:absolute; left: 30px; width: 200px; height: 600px; border-right:1px solid gray; background-color: lightskyblue;}
-        .MainView .leftSideBar li{margin-top: 30px; width: 200px; height: 40px; text-align: center;}
-        .MainView .leftSideBar a{text-align: center; display: block; width: 100%; height: 100%;
-            background-color: lightseagreen; line-height: 40px;}
-        .MainView .leftSideBar a:hover{border: 1px solid blue;}
-        #bottom{width: 100%;}
-        #bottom div{width: 100%; margin: 0 auto; position: relative;}
+        .UserBaseInfo table{margin: 10px auto; width: 100%; text-align: center; }
+        .UserBaseInfo table{}
+        .UserBaseInfo .serverInfo{background-color: cornsilk;}
+        .UserBaseInfo .editButton{margin: 0 auto; width: 15%; height: 30px;background-color: aqua;
+           border-radius: 5px; text-align: center; line-height: 30px;}
+        .UserBaseInfo .editButton a{display: block; width: 100%; height: 100%; color: black;}
+        .UserBaseInfo .editButton a:hover{border: 1px solid blue; border-radius: 5px;}
     </style>
 {% endblock %}
 
+
 {% block content %}
-<div id="top">
-    <div id="logo" class="l">
-      <a href="/">
-        <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
-      </a>
+    <div class="UserBaseInfo r">
+      <div class="clear">
+        <h1 class="l">完善程度:</h1>
+        <div id="progress"></div>
+        <!-- <progress class="l" max="10" value="2" id="progress" style="width: 70%; margin-top: 6px; margin-left: 2%;"></progress> -->
+      </div>
+      <div><h1 style="text-align: center;">基本信息</h1></div>
+      <table border="1">
+        <tr>
+          <td colspan="8">您的资料</td>
+        </tr>
+        <tr>
+          <td class="serverInfo">姓名</td>
+          <td class="userData">{{g.user['username']}}</td>
+          <td class="serverInfo">性别</td>
+          <td class="userData">
+            {% if g.user['sex'] == None %}
+              未知
+            {% else %}
+              g.user['sex']
+            {% endif %}
+          </td>
+          <td class="serverInfo">年龄</td>
+          <td class="userData">{% if g.user['age']%}
+            未知
+          {% else %}
+            g.user['sex']
+          {% endif %}</td>
+          <td class="serverInfo">出生日期</td>
+          <td class="userData">1998-03-19</td>
+        </tr>
+        <tr>
+          <td class="serverInfo">系统角色</td>
+          <td class="userData">{{g.user['level']}}</td>
+          <td class="serverInfo">手机号</td>
+          <td class="userData">{{g.user['telephone']}}</td>
+          <td class="serverInfo">邮箱</td>
+          <td class="userData">{{g.user['email']}}</td>
+          <td class="serverInfo">身份证</td>
+          <td class="userData"></td>
+        </tr>
+        <tr>
+          <td class="serverInfo">现在住址</td>
+          <td colspan="3" class="userData"></td>
+          <td class="serverInfo">籍贯</td>
+          <td colspan="3" class="userData"></td>
+        </tr>
+        <tr>
+          <td class="serverInfo">紧急联系人</td>
+          <td colspan="3" class="userData"></td>
+          <td class="serverInfo">紧急联系人方式</td>
+          <td colspan="3" class="userData"></td>
+        </tr>
+      </table>
+      <div class="editButton">
+        <a href="">去激活</a>
+      </div>
     </div>
-    <div id="top_title">
-    </div>
-    <div id="menu" class="l">
-      <ul>
-        <li><a href="/">首页</a></li>
-        <li><a href="#">家政</a></li>
-        <li><a href="#">月嫂</a></li>
-        <li><a href="#">租房</a></li>
-        <li><a href="#">技术支持</a></li>
-      </ul>
-    </div>
-    <div class="Loginmenu r">
-      <ul>
-        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-        <li><span>{{ g.user['username'] }}</span></li>
-        </li>
-      </ul>
-    </div>
-</div>
-
-<div class="MainView container-fluid">
-    <div class="leftSideBar">
-        <ul>
-            <li>
-                <a href = "#">我的资料</a>
-            </li>
-            <li>
-                <a href="#">账号安全</a>
-            </li>
-            <li>
-                <a href="#">我的服务</a>
-            </li>
-            <li>
-                <a href="#">资金往来</a>
-            </li>
-            <li>
-                <a href="#">其他问题</a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div id="bottom" class="container-fluid">
-  <div class="container">
-    <p>Copyright by Lovehome 2020</p>
-    <a href="#">合作</a>
-    <a href="#">招聘|</a>
-    <a href="#">投资|</a>
-    <a href="#">技术支持|</a>
-  </div>
-</div>
 {% endblock %}
 
 {% block script %}
-
+<script>
+var sum = document.getElementsByClassName("userData");
+var sumNum = sum.length;
+var numNum = 0;
+console.log(sumNum);
+for(data in sum){
+  console.log(sum[data].innerHTML);
+  if( sum[data].innerHTML == "None" && sum[data].innerHTML == 0 && sum[data].innerHTML=="未知"){
+    numNum = numNum + 1;
+  }
+}
+console.log(numNum + 1);
+var pro = $("<progress class='l' id='progress' max='10' value='2' style='width: 70%; margin-top: 6px; margin-left: 2%;'></progress>")
+// pro.className = 'r'
+$("#progress").append(pro)
+</script>
 {% endblock %}

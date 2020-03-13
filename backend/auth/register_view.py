@@ -14,6 +14,7 @@ def register():
     if request.method == "POST":
         account = request.form["account"]
         password = request.form["password"]
+        username = request.form["username"]
         if account is None:
             error = "account is required"
         elif password is None:
@@ -27,6 +28,7 @@ def register():
                     account=account,
                     password=generate_password_hash(password),
                     role="USER_LOW",
+                    username=username,
                 )
                 db.session.add(user)
                 db.session.commit()

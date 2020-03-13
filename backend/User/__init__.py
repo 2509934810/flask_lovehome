@@ -3,6 +3,8 @@ from backend.models import User
 
 user_bp = Blueprint("user", __name__, url_prefix="/user")
 
+from .UserSecurity import security
+
 
 @user_bp.before_request
 def check_user_login():

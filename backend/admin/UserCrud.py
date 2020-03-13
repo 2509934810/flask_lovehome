@@ -14,7 +14,10 @@ def addUser():
         level = request.form["level"]
         user = User()
         user.createUser(
-            account=account, password=generate_password_hash(password), role=level
+            account=account,
+            password=generate_password_hash(password),
+            role=level,
+            username=username,
         )
         db.session.add(user)
         db.session.commit()
