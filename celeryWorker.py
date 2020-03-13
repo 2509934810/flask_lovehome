@@ -13,8 +13,8 @@ from email.utils import parseaddr, formataddr
 
 
 class SendMail(object):
-    smtp_server = "smtp.163.com"
-    password = "leiasdfg1"
+    smtp_server = os.environ.get("MAIL_SERVER")
+    password = os.environ.get("MAIL_PASSWORD")
     from_addr = "qq2509934810@163.com"
 
     def __init__(self, text, sender, receiver, subject, address):
