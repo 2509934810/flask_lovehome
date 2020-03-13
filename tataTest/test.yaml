@@ -1,0 +1,39 @@
+# ---
+# setting:
+#   type: web
+#   authenticaton:
+#     authType: oauth
+
+# cases:
+- name: 'test-1'
+  url: 'http://www.baidu.com'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: "find"
+    checkbody:
+    - 'body'
+    - 'body'
+    timeout: 10
+  - checktype: "click"
+    checkbody:
+    - 'body'
+    - 'body'
+    timeout: 5
+
+
+- name: 'test-2'
+  url: 'http://www.baidu.com'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: "find"
+    checkbody:
+    - 'body'
+    - 'body'
+    timeout: 10
+  - checktype: "click"
+    checkbody:
+    - 'body'
+    - 'body'
+    timeout: 5
