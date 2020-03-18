@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}{% endblock %}
+
+        <link rel="stylesheet" href="../../static/css/common.css">
+        <style>
+            body{background-color: bisque;}
+            #SideBar{margin-left: 20px; width: 15%; background-color: lightskyblue; height: 640px;}
+            #SideBar ul{width: 100%; height: 100%;}
+            #SideBar li{margin-top: 20px; height: 40px; }
+            #SideBar li a{font-size: 25px; line-height: 40px; display: block; margin: 0 auto;}
+            #SideBar li a:hover{background-color: lightseagreen;}
+            #MainView{position: relative; margin-left: 5%; width: 70%; border-top: 1px solid lightgreen}
+            #MainView .topBar{display: grid; grid-template-columns: 30% 40% 30%;}
+            #MainView .topBar li{float: left; margin-left: 20px; font-size: 15px; width: 20%; height: 40px; text-align: center;}
+            #MainView .topBar li a{display: block; width: 100%; height: 100%; border-radius: 5px; color: black; line-height: 40px;}
+            a:hover{border: 1px solid blue; cursor:pointer;}
+            #MainView .topBar span{line-height: 40px; font-size: 25px;font-weight: bold;}
+
+            #MainView .topBar .explore{margin-left: 3%;}
+            #MainView .topBar .explore input{width: 200px; height: 40px; border-radius: 5px; float: left;}
+            #MainView .topBar .explore input:hover{border: 1px solid gray;}
+            #MainView .topBar .explore a{display: block; width: 60px; height: 40px;line-height: 40px;
+                float: left; margin-left: 20px; background-color: green; border-radius: 5px; font-size: 15px; text-align: center;}
+        </style>
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    <div id="top" class="container-fluid clear">
+        <div id="logo" class="l">
+          <a href="/">
+            <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+          </a>
+        </div>
+        <div class="title">
+            <p>
+                我爱我家后台管理
+            </p>
+        </div>
+        <div class="MainInfo r">
+            我的信息
+            <ul>
+                <li><a href="#">查看信息</a></li>
+                <li><a href="#">修改信息</a></li>
+                <li><a href="/auth/logout">退出登录</a></li>
+                <li><a href="#">修改密码</a> </li>
+            </ul>
+        </div>
+    </div>
+    <div id="SideBar" class="l clear">
+        <ul>
+            <li><a href="{{url_for('admin.indexs')}}">成员管理</a></li>
+            <li><a>员工管理</a></li>
+            <li><a>资金流动</a></li>
+            <li><a>投诉信箱</a></li>
+            <li><a>合作伙伴</a></li>
+        </ul>
+    </div>
+    {% block content %}
+    {% endblock %}
+    {% block script %}
+
+    {%endblock%}
+</body>
+</html>

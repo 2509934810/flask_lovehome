@@ -1,0 +1,109 @@
+
+
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>div+ul实现下拉框</title>
+    <style type="text/css">
+        #vm_select {
+            width: 225px;
+            height: 29px;
+            border: 1px #e7e6e3 solid;
+            float: left;
+            margin-top: 17px;
+            /*background: url("../images/qietu/module/xjt.png") right no-repeat;*/
+            /*下拉框的下拉图标*/
+            background-color: white;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #tit_se {
+            height: 26px;
+            font-size: 14px;
+            color: #727068;
+            font-weight: lighter;
+            float: left;
+            width: 200px;
+            line-height: 26px;
+            position: relative;
+            z-index: 9999999;
+            background: white;
+            border: 0px;
+            cursor: pointer;
+        }
+
+        #tit_se:focus {
+            outline: none;
+        }
+
+        #vm_select ul {
+            list-style: none;
+            padding: 0px;
+            margin-top: 28px;
+            border: 1px solid #333333;
+            background-color: #fafaf9;
+            z-index: 9999;
+            position: relative;
+            border: 0px solid #333333;
+            box-shadow: 0px 10px 15px #e1dfda;
+        }
+
+        #vm_select ul ::-moz-selection {
+            background: none;
+        }
+
+        #vm_select ul ::selection {
+            background: none;
+        }
+
+        #vm_select ul li {
+            /*border: 1px gray solid;*/
+            height: 29px;
+            line-height: 29px;
+            margin-top: -1px;
+            font-size: 14px;
+            color: #727068;
+            font-weight: lighter;
+            border-top: #e7e5e2 1px solid;
+            cursor: pointer;
+        }
+
+        #vm_select ul li:hover {
+            background: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div id="vm_select" onclick="click_ul();">
+    <input value="默认" type="text" id="tit_se">
+    <ul id="ul_select" style="">
+        <li con_key="select1" onclick="s_li_click();">默认</li>
+        <li con_key="select2" onclick="s_li_click();">密码类型</li>
+        <li con_key="select3" onclick="s_li_click();">带语音输入类型</li>
+        <li con_key="select4" onclick="s_li_click();">带清除类型</li>
+    </ul>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    document.getElementById('ul_select').style.display = 'none';
+
+    function click_ul() {                //  点击展开
+        document.getElementById('ul_select').style.display = 'block';
+    }
+    function s_li_click() {
+        var t_obj = event.target;
+        document.getElementById('tit_se').value = t_obj.innerHTML;
+        setTimeout(function () {
+            document.getElementById('ul_select').style.display = 'none';
+        }, 1);
+    }
+    document.onclick = function () {
+        var cur_obj = event.target;
+        if ('tit_se' != cur_obj.id && 'vm_select' != cur_obj.id) {
+            document.getElementById('ul_select').style.display = 'none';
+        }
+    }
+</script>
+

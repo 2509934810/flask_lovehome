@@ -1,0 +1,5 @@
+.ssh/
+*.pyc
+venv/
+.env
+*.sql

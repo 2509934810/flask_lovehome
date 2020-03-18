@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  web:
+    image: leijiangtao/flask_lovehome:1.2
+    container_name: flask_app
+    ports:
+      - 80:5000
+    volumes:
+      - $PWD:/workspace/lovehome/flask_demo_1/
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    environment:
+      - "MYSQL_ROOT_PASSWORD=lei123"
+      - "MYSQL_DATABASE=lei"
+    expose:
+      - 3600

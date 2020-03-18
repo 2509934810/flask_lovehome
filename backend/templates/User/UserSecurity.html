@@ -1,0 +1,46 @@
+{% extends 'User/base.html' %}
+
+{% block title%}
+    <title>我的资料</title>
+{% endblock %}
+
+{% block style %}
+<style>
+.UserBaseInfo .com{width: 15%;margin: 0 auto; height: 30px;}
+.UserBaseInfo a{display: block; background-color: red; width: 100%; height: 100%;
+    text-align: center; border-radius: 4px; cursor: pointer;}
+.UserBaseInfo table{margin: 10px auto; width: 100%; text-align: center; }
+.UserBaseInfo table{}
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="UserBaseInfo r">
+    <div class="com">
+        <a>修改密码</a>
+    </div>
+    <div>
+        <table border="1" style="text-align: center;">
+            <tr>
+                <td colspan="3">登录记录</td>
+            </tr>
+            <tr>
+                <td>账号</td>
+                <td>用户名</td>
+                <td>登录日期</td>
+                <td>登录地点</td>
+            </tr>
+            {% for info in loginInfo %}
+            <tr>
+                <td>{{g.user['account']}}</td>
+                <td>{{ g.user['username']}}</td>
+                <td>{{info['loginTime']}}</td>
+                <td>{{info['loginSite']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

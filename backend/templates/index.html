@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="../static/css/common.css">
+<style>
+ #banner{position: relative;}
+ #banner .banner_list{width: 100%; height: 840px; position: relative;}
+ /* #banner .banner_list:nth-child(1){background-image: url("{{url_for('static', filename='img/banner.jpg')}}");} */
+ #banner .banner_list li{width: 100%; height: 100%; background: center 0 no-repeat; position:absolute; top: 0; left: 0; opacity: 0; z-index: 1;}
+ #banner .banner_list li.active{opacity: 1; z-index: 10;}
+ #banner .banner_btn{position: absolute; width: 100%; bottom: 19px; z-index: 20;}
+ #banner .banner_btn li{display: inline-block; width: 12px; height: 12px;}
+
+ #IndexTitle{width: 100%; height: 240px; text-align: center;}
+ #IndexTitle p{ font-size: 34px; color: lightsalmon;}
+ #successList{position: relative;}
+ #successList .SuccessTitle h2{text-align: center; font-size: 25px; color:black; font-weight: bold;}
+ #Sample{margin-top: 40px;}
+ #Sample ul{margin-left: 60px;}
+ #Sample li{float: left; display: block; width: 240px; margin-left: 4px;}
+ #Sample p{overflow:hidden;}
+</style>
+{% endblock %}
+{% block content %}
+<div id="top">
+  <div id="logo" class="l">
+    <a href="/">
+      <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+    </a>
+  </div>
+  <div id="top_title">
+    <!-- <h2>我爱我家家政服务安全发布平台</h2> -->
+  </div>
+  <div id="menu" class="l">
+    <ul>
+      <li><a href="/">首页</a></li>
+      <li><a href="#">家政</a></li>
+      <li><a href="#">月嫂</a></li>
+      <li><a href="#">租房</a></li>
+      <li><a href="#">技术支持</a></li>
+    </ul>
+  </div>
+
+  <div class="Loginmenu r">
+    <ul>
+      {% if g.user %}
+      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+      <li id="myInfo"><a href = "{{url_for('user.index')}}">我的信息</a></li>
+      <!-- <li><span>{{ g.user['username'] }}</span></li> -->
+      {% else %}
+      <li><a href="{{ url_for('auth.register') }}">注册</a></li>
+      <li><a href="{{ url_for('auth.login') }}">登陆</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+<div id="banner" class="container-fluid">
+  <ul class="banner_list">
+    <li style="background-image: url('../../static/img/banner.jpg');" class="active">
+      <a href="#"></a>
+    </li>
+  </ul>
+</div>
+<div id="IndexTitle" class="container-fluid">
+  <p>我们通过您的生活方式</p>
+  <br>
+  <p>为您定制专业的家政服务</p>
+</div>
+<div id="successList" class="container">
+  <div class="SuccessTitle">
+    <h2>成功案例</h2>
+  </div>
+  <div id="Sample">
+    <ul>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px">
+        <p>小王在##################################表现特别优秀</p>
+        <span>优秀员工姓名: 王大王</span>
+        <span>状态: 空闲</span>
+      </li>
+      <li>
+        <a><img src="../static/img/Worker.jpg" title="" alt="" width="230px" height="100px"></a>
+        <p>小王在##################################表现特别优秀</p>
+        <span><a>优秀员工姓名: 王大王</a></span>
+        <span>状态: 空闲</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div id="compare" class="container-fluid" style="clear: both;">
+
+</div>
+<div id="bottom" class="container-fluid">
+  <div class="container">
+    <p>Copyright by Lovehome 2020</p>
+    <a href="#">合作</a>
+    <a href="#">招聘|</a>
+    <a href="#">投资|</a>
+    <a href="#">技术支持|</a>
+  </div>
+</div>
+{% endblock %}
