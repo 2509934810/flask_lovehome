@@ -27,7 +27,7 @@ class User(db.Model):
     salary_info = db.relationship("Salary", backref="user", lazy="dynamic")
     actived = db.Column(db.Boolean, nullable=False, default=False)
     loginInfo = db.relationship("loginTb", backref="user", lazy="dynamic")
-    sex = db.Column(db.Boolean, nullable=False)
+    sex = db.Column(db.Boolean, nullable=True)
     age = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):

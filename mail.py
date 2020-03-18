@@ -8,8 +8,8 @@ import os
 
 
 class SendMail(object):
-    smtp_server = os.environ.get("MAIL_SERVER")
-    password = os.environ.get("MAIL_PASSWORD")
+    smtp_server = 'smtp.qq.com'
+    password = 'vdyjzfgpqndodhhc'
     from_addr = "qq2509934810@163.com"
 
     def __init__(self, text, sender, receiver, subject, address):

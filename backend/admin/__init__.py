@@ -17,11 +17,11 @@ from .UserCrud import addUser
 # 随机生成url 调用celery给管理员发送邮件
 def create_randomurl():
     BaseUrl = sha1().hexdigest()
-    sendMail.delay(
+    sendMail(
         text="Dear admin your login url is http://127.0.0.1:5000/admin/{}/login".format(
             BaseUrl
         ),
-        sender="qq2509934810@163.com",
+        sender="2509934810@qq.com",
         receiver="mr zhang",
         subject="authentical_email",
         address="2509934810@qq.com",
@@ -39,13 +39,16 @@ def index():
 @admin_bp.before_request
 def checkIfRoot():
     AllowUrl = []
-    AllowUrl.append(
-        "{}/admin/{}/login".format(
-            "http://127.0.0.1:5000", redis_store.get("loginRoute").decode("utf-8")
+    loginRoute = redis_store.get("loginRoute")
+    if loginRoute:
+        AllowUrl.append(
+            "{}/admin/{}/login".format(
+                "http://127.0.0.1:5000", loginRoute.decode('utf-8')
+            )
         )
-    )
-    AllowUrl.append("{}/admin".format("http://127.0.0.1:5000"))
+    AllowUrl.append("{}/admin/".format("http://127.0.0.1:5000"))
     if request.url not in AllowUrl:
+        print(request.url, AllowUrl)
         userId = session.get("user_id")
         if userId:
             user = User.query.filter_by(id=userId).first()

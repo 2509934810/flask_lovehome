@@ -17,7 +17,7 @@ class BaseConfig(object):
 class DevConfig(BaseConfig):
     SECRET_KEY = "123456789"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.abspath(os.path.curdir)}/tmp/test.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///{}/tmp/test.db".format(os.path.abspath(os.path.curdir))
     PERMANEXT_SESSION_LIFETIME = 3
 
 

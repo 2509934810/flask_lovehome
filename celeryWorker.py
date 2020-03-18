@@ -15,7 +15,7 @@ from email.utils import parseaddr, formataddr
 class SendMail(object):
     smtp_server = os.environ.get("MAIL_SERVER")
     password = os.environ.get("MAIL_PASSWORD")
-    from_addr = "qq2509934810@163.com"
+    from_addr = "2509934810@qq.com"
 
     def __init__(self, text, sender, receiver, subject, address):
         self.text = text
@@ -43,7 +43,7 @@ class SendMail(object):
 
 
 celery = Celery(
-    "tasks", broker="redis://127.0.0.1:6379/1", backend="redis://127.0.0.1:6379/2"
+    "tasks", broker="redis://127.0.0.1:6379/3", backend="redis://127.0.0.1:6379/4"
 )
 
 
@@ -53,7 +53,7 @@ def add(x, y):
     return x + y
 
 
-@celery.task
+# @celery.task
 def sendMail(text, sender, receiver, subject, address):
     client = SendMail(text, sender, receiver, subject, address)
     client.send()

@@ -73,7 +73,11 @@
         </tr>
       </table>
       <div class="editButton">
-        <a href="">去激活</a>
+        {% if g.user['actived'] %}
+          <a href="">修改信息</a>
+        {% else %}
+          <a href="" style="pointer-events: none">去激活</a>
+        {% endif %}
       </div>
     </div>
 {% endblock %}

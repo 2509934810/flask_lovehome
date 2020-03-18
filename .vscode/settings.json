@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/lei/.local/share/virtualenvs/flask_demo_1-rSFXOb8P/bin/python",
+    "python.pythonPath": "/home/lei/.local/share/virtualenvs/flask_lovehome-u2GcRiaV/bin/python",
     "sqltools.connections": [
         {
             "database": "${workspaceFolder}/tmp/test.db",
