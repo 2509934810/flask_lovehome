@@ -19,7 +19,7 @@ class User(db.Model):
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(30), nullable=True)
-    telephone = db.Column(db.Integer, nullable=True)
+    telephone = db.Column(db.String(15), nullable=True)
     level = db.Column(db.Integer, nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # head_photo = db.relationship('Photo', backref='user', lazy='dynamic')
@@ -44,6 +44,14 @@ class User(db.Model):
 
     def revertPermission(self):
         self.level = self.LEVEL.get("USER_LOW")
+
+    def updateInfo(self, username, email, telephone, sex, age, actived):
+        self.username = username
+        self.email = email
+        self.telephone = telephone
+        self.sex = sex
+        self.age = age
+        self.actived = actived
 
     @staticmethod
     def checkRoot(DbLevel, UserLevel):

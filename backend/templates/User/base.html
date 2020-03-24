@@ -60,7 +60,7 @@
                 </li>
                 <li>
                     {% if g.user['actived'] %}
-                      <a href="{{url_for('user.security')}}">我的服务</a>
+                      <a href="{{url_for('user.service')}}">我的服务</a>
                     {% else %}
                       <a href="/" style="pointer-events: none">未激活服务</a>
                     {% endif %}

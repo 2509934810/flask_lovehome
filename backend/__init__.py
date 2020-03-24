@@ -24,6 +24,7 @@ def init_app(app):
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+    app.add_template_global(os.environ.get("FRONT_1") , "front1")
     if test_config:
         app.config.from_mapping(test_config)
     else:
@@ -50,6 +51,7 @@ def create_app(test_config=None):
     from backend.admin import admin_bp
 
     app.register_blueprint(admin_bp)
+
 
     @app.route("/")
     def index():

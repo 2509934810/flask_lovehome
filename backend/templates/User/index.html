@@ -37,14 +37,19 @@
             {% if g.user['sex'] == None %}
               未知
             {% else %}
-              g.user['sex']
+              {% if g.user['sex'] == True %}
+                男
+              {% else %}
+                女
+              {% endif  %}
             {% endif %}
           </td>
           <td class="serverInfo">年龄</td>
-          <td class="userData">{% if g.user['age']%}
-            未知
+          <td class="userData">
+          {% if g.user['age']%}
+            {{g.user['age']}}
           {% else %}
-            g.user['sex']
+            0
           {% endif %}</td>
           <td class="serverInfo">出生日期</td>
           <td class="userData">1998-03-19</td>
@@ -74,9 +79,9 @@
       </table>
       <div class="editButton">
         {% if g.user['actived'] %}
-          <a href="">修改信息</a>
+          <a href="{{url_for('user.actived')}}">修改信息</a>
         {% else %}
-          <a href="" style="pointer-events: none">去激活</a>
+          <a href="{{url_for('user.actived')}}">去激活</a>
         {% endif %}
       </div>
     </div>

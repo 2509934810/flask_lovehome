@@ -1,0 +1,77 @@
+{% extends 'User/base.html' %}
+
+{% block title %}
+<title>
+    激活信息
+</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    .activeTitle{width: 80%; margin: 0 auto; height: 30px;}
+    .activeTitle h2{margin: 0 auto; width: 40%; font-weight: bold; font-size: 18px; line-height: 30px;}
+
+    form{margin: 0 auto; width: 40%; height: 100%; background-color: cornsilk;}
+    form label{font-size: 16px; font-style: italic;}
+    form .changeButton{width: 30%; height: 30px; margin: 0 auto;}
+    form .changeButton button{width: 100%; height: 100%; display: block; background-color: lightskyblue; border-radius: 4px;}
+    form .changeButton button:hover{border: 1px solid blue;}
+    form img{float: right; display: block; border-radius: 4px; margin-right: 5%;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="UserBaseInfo r">
+    <div class="activeTitle">
+        <h2>快去完善你的信息拉</h2>
+    </div>
+    <form method="POST">
+        <div>
+            <label>账&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
+            <input type="text" id="account" name="account" disabled value="{{g.user['account']}}">
+        </div>
+        <div>
+            <label for="username">用&nbsp;户&nbsp;名：</label>
+            <input type="text" id="username" name="username" placeholder="{{g.user['username']}}">
+            <img width="25px" height="25px" src="{{url_for('static', filename='img/loading.gif')}}">
+        </div>
+        <div>
+            <label for="sex">性&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+            <select id="sex" name="sex">
+                <option value="1">男</option>
+                <option value="2">女</option>
+            </select>
+        </div>
+        <div>
+            <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;龄：</label>
+            <input type="number" name="age" id="age">
+        </div>
+        <div>
+            <label for="email">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+            <input type="email" name="email" id="email" placeholder="{{g.user['email']}}">
+        </div>
+        <div>
+            <label for="">手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+            <input type="tel" name="telephone" id="telephone" placeholder="{{g.user['telephone']}}">
+        </div>
+        <div>
+            <label for="">出生日期：</label>
+            <input type="date" name="bornTime" id="bornTime">
+        </div>
+        <div>
+            <label for="idcard">身份证号：</label>
+            <input type="text" id="idcard" name="idcard">
+        </div>
+        <div>
+            <label for="address">住&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+            <input type="text" name="address" id="address">
+        </div>
+        <div class="changeButton">
+            <button type="submit">更改</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

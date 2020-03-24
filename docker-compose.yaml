@@ -1,19 +1,15 @@
 version: '3.7'
-
 services:
-  web:
-    image: leijiangtao/flask_lovehome:1.2
-    container_name: flask_app
+  frontend:
+    image: nginx:latest
     ports:
-      - 80:5000
+      - 5001:80
     volumes:
-      - $PWD:/workspace/lovehome/flask_demo_1/
-    depends_on:
-      - db
-  db:
-    image: mysql:latest
-    environment:
-      - "MYSQL_ROOT_PASSWORD=lei123"
-      - "MYSQL_DATABASE=lei"
-    expose:
-      - 3600
+      - /home/lei/workspace/flask_lovehome/frontend/dist:/usr/share/nginx/html
+    restart: always
+  backend_1:
+    image: flaskhome:latest
+    ports:
+      - 9999:80
+  backend_2:
+    image: flaskhome_service_1:latest
