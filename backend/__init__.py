@@ -6,9 +6,11 @@ from flask.cli import with_appcontext
 from instance.config import DevConfig, ProConfig
 from flask_redis import FlaskRedis
 from flask_celery import Celery
+from flask_cors import CORS
 
 db = SQLAlchemy()
 redis_store = FlaskRedis()
+auth_store = FlaskRedis(config_prefix=ProConfig.AUTH_REDIS)
 celery = Celery()
 
 
@@ -24,7 +26,8 @@ def init_app(app):
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-    app.add_template_global(os.environ.get("FRONT_1") , "front1")
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    app.add_template_global(os.environ.get("FRONT_1"), "front1")
     if test_config:
         app.config.from_mapping(test_config)
     else:
@@ -39,7 +42,8 @@ def create_app(test_config=None):
 
     redis_store.init_app(app)
     celery.init_app(app)
-
+    # 注册auth redis
+    auth_store.init_app(app)
     from backend.auth import auth_bp
 
     app.register_blueprint(auth_bp)
@@ -52,6 +56,9 @@ def create_app(test_config=None):
 
     app.register_blueprint(admin_bp)
 
+    from backend.api import api_bp
+
+    app.register_blueprint(api_bp)
 
     @app.route("/")
     def index():

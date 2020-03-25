@@ -5,6 +5,7 @@ from datetime import timedelta
 class BaseConfig(object):
     DEBUG = True
     DATA_PER_PAGE = 6
+    AUTH_REDIS = "redis://localhost:6379/3"
     CELERY_BROKER_URL = ("redis://localhost:6379/1",)
     CELERY_RESULT_BACKEND = "redis://localhost:6379/2"
     CELERYBEAT_SCHEDULE = {
@@ -17,7 +18,9 @@ class BaseConfig(object):
 class DevConfig(BaseConfig):
     SECRET_KEY = "123456789"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = "sqlite:///{}/tmp/test.db".format(os.path.abspath(os.path.curdir))
+    SQLALCHEMY_DATABASE_URI = "sqlite:///{}/tmp/test.db".format(
+        os.path.abspath(os.path.curdir)
+    )
     PERMANEXT_SESSION_LIFETIME = 3
 
 

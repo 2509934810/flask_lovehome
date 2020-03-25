@@ -1,7 +1,5 @@
 FROM python:3.7
 
-WORKDIR /workspace/lovehome/
-
 # COPY .ssh/* /root/.ssh/
 
 # RUN git clone git@github.com:2509934810/flask_demo_1.git && cd flask_demo_1/ && pip3 install -r requirements.txt
@@ -9,6 +7,10 @@ WORKDIR /workspace/lovehome/
 # RUN rm -rf /root/.ssh/
 
 # WORKDIR /workspace/lovehome/flask_demo_1/
+
+COPY ./ /workspace/lovehome
+
+WORKDIR /workspace/lovehome/
 
 RUN apt update && apt install -y pipenv
 

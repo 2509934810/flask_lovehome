@@ -2,7 +2,7 @@
   <div>
     <div class="banner container">
       <div class="item">
-        <img src="https://i1.mifile.cn/a4/xmad_15535933141925_ulkYv.jpg" width="100%" height="400px">
+        <img :src="midPhoto" width="100%" height="400px">
       </div>
     </div>
   </div>
@@ -14,15 +14,18 @@ export default {
   data () {
     return {
       data: {
-        dataList: 'https://i1.mifile.cn/a4/xmad_15535933141925_ulkYv.jpg'
+        midPhoto: '#'
       }
     }
+  },
+  created () {
+    this.midPhoto = require('@' + '/assets/JiaZheng.jpeg')
   }
 }
 </script>
 <style lang="">
   .container{width: 80%; margin: 0 auto}
-  .banner img{}
+  .banner{margin-top: 20px}
   ul{list-style: none}
   li{float: left}
 </style>

@@ -1,0 +1,11 @@
+[qSkipTool]2020/03/24 05:21:58 Con.go:48: read ./: is a directory
+[qSkipTool]2020/03/24 05:21:58 Poll.go:32: job 数量: 0
+[qSkipTool]2020/03/24 05:26:45 Con.go:48: read ./: is a directory
+[qSkipTool]2020/03/24 05:26:45 Poll.go:32: job 数量: 0
+[qSkipTool]2020/03/24 05:27:05 Poll.go:32: job 数量: 28
+[qSkipTool]2020/03/24 05:27:07 validator.go:46: input#account
+[qSkipTool]2020/03/24 05:27:07 validator.go:46: input#account
+[qSkipTool]2020/03/24 05:27:17 validator.go:46: input#password
+[qSkipTool]2020/03/24 05:27:17 validator.go:46: input#password
+[qSkipTool]2020/03/24 05:27:17 validator.go:29: clickbody > div > form > button
+[qSkipTool]2020/03/24 05:27:17 validator.go:29: clickbody > div > form > button
