@@ -62,7 +62,7 @@ export default {
       }
     }
     let useraccount = JSON.parse(localStorage.getItem('user')).account
-    this.myInfoRouter = '/#/user/' + useraccount
+    this.myInfoRouter = '/#/user'
   },
   methods: {
     logout () {

@@ -60,6 +60,10 @@ def create_app(test_config=None):
 
     app.register_blueprint(api_bp)
 
+    from backend.service import service_bp
+
+    app.register_blueprint(service_bp)
+
     @app.route("/")
     def index():
         return render_template("index.html")

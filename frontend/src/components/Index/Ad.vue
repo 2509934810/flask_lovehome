@@ -1,5 +1,5 @@
 <template>
-  <div id="IndexTitle" class="container-fluid">
+  <div id="IndexTitle" class="container-fluid clear">
     <p>我们通过您的生活方式</p>
     <br>
     <p>为您定制专业的家政服务</p>

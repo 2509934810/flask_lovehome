@@ -5,3 +5,91 @@
     我的服务
 </title>
 {% endblock %}
+
+{% block style %}
+    <style>
+        .yourchange{text-align: center; margin-top: 10px; font-size: 21px;}
+        .btngroup{width: 50%; margin: 10px auto;}
+        .btngroup a{margin-left: 10%;}
+        .serviceTable{margin-top: 20px;}
+        .serviceTable table{width: 80%; margin: 0 auto; text-align: center;}
+        .serviceTable table .singPage{width: 100%; border: 1px solid black;}
+        .serviceTable table td{width: 10%;}
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="UserBaseInfo r">
+    <div class="yourchange">
+        {% if g.user['level'] < 8 %}
+            <h1>尊敬的客户</h1>
+        {% elif g.user['level'] < 32 %}
+            <h1>尊敬的员工</32>
+        {% else %}
+            <h1>尊敬的管理员</h1>
+            <div>
+                <button>我的服务</button>
+                <button>我的</button>
+            </div>
+        {% endif %}
+    </div>
+    <div class="btngroup">
+        <a>未处理</a>
+        <a>进行中</a>
+        <a>已支付</a>
+        <span class="r">服务数量: 2</span>
+    </div>
+    <div class="serviceTable">
+        <div style="border: 1px solid black; border-radius: 30px;">
+            <table style="border-collapse:separate;">
+                <thead>
+                    <td><input type="checkbox"></td>
+                    <td>订单号</td>
+                    <td>12312441</td>
+                    <td>类型</td>
+                    <td>时长</td>
+                    <td>工薪</td>
+                    <td>状态</td>
+                </thead>
+                <tbody>
+                    <td colspan="2">
+                        <img src="{{url_for('static', filename='img/Worker.jpg')}}" alt="阿姨图片" width="100%">
+                    </td>
+                    <td><p>简介</p></td>
+                    <td>小时工</td>
+                    <td>8H</td>
+                    <td>100/h</td>
+                    <td>未处理</td>
+                </tbody>
+            </table>
+        </div>
+        <div style="border: 1px solid black; border-radius: 30px;">
+            <table>
+                <thead>
+                    <td><input type="checkbox"></td>
+                    <td>订单号</td>
+                    <td>12312441</td>
+                    <td>类型</td>
+                    <td>时长</td>
+                    <td>工薪</td>
+                    <td>状态</td>
+                </thead>
+                <tbody>
+                    <td colspan="2">
+                        <img src="{{url_for('static', filename='img/Worker.jpg')}}" alt="阿姨图片" width="100%">
+                    </td>
+                    <td><p>简介</p></td>
+                    <td>小时工</td>
+                    <td>8H</td>
+                    <td>100/h</td>
+                    <td>未处理</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

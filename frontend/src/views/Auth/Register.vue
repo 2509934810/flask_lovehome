@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import router from './../../router'
 import axios from 'axios'
 export default {
   name: 'register',
@@ -58,7 +59,9 @@ export default {
             password: this.password
           }
         }).then((rsp) => {
-          console.log(rsp)
+          if (rsp.data.code === 200) {
+            router.push({path: '/'})
+          }
         })
       } else {
         this.info2 = 'some msg are lost'

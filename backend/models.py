@@ -7,7 +7,7 @@ class User(db.Model):
     LEVEL = {
         "USER_LOW": 1,
         "USER_MID": 2,
-        "USER_HIG": 4,
+        "Worker": 4,
         "MANAGE_LOW": 8,
         "MANAGE_MID": 16,
         "MANAGE_HIG": 32,
@@ -85,3 +85,10 @@ class loginTb(db.Model):
     def createData(self, userId, loginSite):
         self.user_id = userId
         self.loginSite = loginSite
+
+
+# create db
+class Service(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    provider = db.Column(db.String(20), db.ForeignKey("user.account"))
+    shoper = db.Column(db.string(20), db.ForeignKey("user.account"))

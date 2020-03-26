@@ -8,7 +8,6 @@
         </li>
       </ul>
     </div>
-    <ad></ad>
     <show></show>
     <foot></foot>
   </div>

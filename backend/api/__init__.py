@@ -1,6 +1,7 @@
 from flask import Blueprint, g, session, jsonify, Response, request
 from backend import auth_store
 from backend.models import User
+from backend import db
 from werkzeug.security import check_password_hash, generate_password_hash
 import hashlib
 
@@ -20,7 +21,7 @@ def register():
         formData.get("account"),
         formData.get("password"),
     )
-    user = User.query.filter(account=account).first()
+    user = User.query.filter_by(account=account).first()
     if user:
         data["code"] = 403
         data["info"] = "go out bitch"
@@ -28,6 +29,17 @@ def register():
     else:
         # todo add registry
         user = User()
+        user.createUser(
+            account=account,
+            password=generate_password_hash(password),
+            role="USER_LOW",
+            username=username,
+        )
+        db.session.add(user)
+        db.session.commit()
+        data["code"] = 200
+        data["info"] = "success"
+        return jsonify(data)
 
 
 @api_bp.route("/login", methods=["POST"])

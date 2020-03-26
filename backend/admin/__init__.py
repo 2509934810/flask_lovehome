@@ -1,13 +1,13 @@
 from flask import Blueprint, g, render_template, session, redirect, url_for, request, g
 from werkzeug.security import check_password_hash
-from hashlib import sha1
+from hashlib import md5
 import os
 from backend import db
 from backend.models import User
 from backend import redis_store, celery
 from celeryWorker import sendMail
 from backend.models import User
-
+import random
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -16,23 +16,24 @@ from .UserCrud import addUser
 
 # 随机生成url 调用celery给管理员发送邮件
 def create_randomurl():
-    BaseUrl = sha1().hexdigest()
+    BaseUrl = md5()
+    BaseUrl.update("{}".format(random.randrange(1000, 100000)).encode("utf-8"))
     sendMail(
         text="Dear admin your login url is http://127.0.0.1:5000/admin/{}/login".format(
-            BaseUrl
+            BaseUrl.hexdigest()
         ),
         sender="2509934810@qq.com",
         receiver="mr zhang",
         subject="authentical_email",
         address="2509934810@qq.com",
     )
-    return BaseUrl
+    return BaseUrl.hexdigest()
 
 
 @admin_bp.route("/")
 def index():
     BaseUrl = create_randomurl()
-    redis_store["loginRoute"] = BaseUrl
+    redis_store.set("loginRoute", BaseUrl, ex=300)
     return redirect(url_for("auth.login"))
 
 
@@ -43,7 +44,7 @@ def checkIfRoot():
     if loginRoute:
         AllowUrl.append(
             "{}/admin/{}/login".format(
-                "http://127.0.0.1:5000", loginRoute.decode('utf-8')
+                "http://127.0.0.1:5000", loginRoute.decode("utf-8")
             )
         )
     AllowUrl.append("{}/admin/".format("http://127.0.0.1:5000"))
