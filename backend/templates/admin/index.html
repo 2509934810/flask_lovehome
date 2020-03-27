@@ -26,7 +26,7 @@
                     <option value="{{url_for('admin.indexs', userType='USER_LOW')}}">普通用户</option>
                     <option value="{{url_for('admin.indexs', userType='USER_LOW')}}">普通用户</option>
                     <option value="{{url_for('admin.indexs', userType='USER_MID')}}">高级用户</option>
-                    <option value="{{url_for('admin.indexs', userType='USER_HIG')}}">VIP用户</option>
+                    <option value="{{url_for('admin.indexs', userType='WORKER')}}">线下员工</option>
                     <option value="{{url_for('admin.indexs', userType='MANAGE_LOW')}}">普通员工</option>
                     <option value="{{url_for('admin.indexs', userType='MANAGE_MID')}}">经理</option>
                     <option value="{{url_for('admin.indexs', userType='MANAGE_HIG')}}">技术总监</option>
@@ -58,6 +58,7 @@
                 <td>账号</td>
                 <td>用户名</td>
                 <td>等级</td>
+                <!-- <td>直接隶属</td> -->
                 <td>邮箱</td>
                 <td>手机号</td>
                 <td>激活</td>
@@ -70,7 +71,24 @@
                         <td>{{user.id}}</td>
                         <td>{{user.account}}</td>
                         <td>{{user.username}}</td>
-                        <td>{{user.level}}</td>
+                        {% if user.level == 1 %}
+                            <td>普通用户</td>
+                        {% elif user.level == 2 %}
+                        <td>高级用户</td>
+                        {% elif user.level == 4 %}
+                        <td>线下员工</td>
+                        {% elif user.level == 8 %}
+                        <td>员工</td>
+                        {% elif user.level == 16 %}
+                        <td>经理</td>
+                        {% elif user.level == 32 %}
+                        <td>总监</td>
+                        {% elif user.level == 64 %}
+                        <td>管理员</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        <!-- <td></td> -->
                         <td>{{user.email}}</td>
                         <td>{{user.telephone}}</td>
                         <td>{{user.actived}}</td>

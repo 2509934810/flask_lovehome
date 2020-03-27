@@ -1,0 +1,37 @@
+{% extends 'manage/base.html' %}
+
+{% block style %}
+<!-- <link rel="stylesheet" href="../static/css/common.css"> -->
+<style>
+  .Main{width: 90%; position: relative; margin-top: 20px;}
+  .Main table{width: 100%;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="MainView" class="l">
+  <div class="topBar clear">
+      <div class="Show l">
+      </div>
+      <div class="explore l">
+          <input type="text" placeholder="请输入搜索的编号" id="searchId">
+          <a id="runSearch">搜索</a>
+      </div>
+  </div>
+  <div class="Main l">
+      <table border="1">
+          <tr>
+              <td><input type="checkbox" id="MainCheck"></td>
+              <td>ID</td>
+              <td>账号</td>
+              <td>用户名</td>
+              <td>等级</td>
+              <td>邮箱</td>
+              <td>手机号</td>
+              <td>激活</td>
+              <td>注册日期</td>
+          </tr>
+      </table>
+  </div>
+</div>
+{% endblock %}

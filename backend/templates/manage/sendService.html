@@ -1,0 +1,63 @@
+{% extends 'manage/base.html' %}
+
+{% block title %}
+    <title>添加服务</title>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .addTable{width: 30%; margin: 0 auto; margin-top: 20px; height: 400px; background-color: lightskyblue}
+        .addTable form{width: 100%; height: 60%; margin: 20px auto; display: block; position: relative;}
+        .addTable form div{width: 80%; margin-top: 20px;}
+        .addTable form div h1{text-align: center;}
+        .addTable form div select{width: 40%; height: 30px; float: right;}
+        .addTable form div input{width: 40%; height: 30px; float: right;}
+        .addTable form div .submitbtn{width: 60%; height: 30px; float: right; background-color: lightslategrey;}
+        .addTable form div label{width: 30%; height: 30px; float: left; margin-left: 10%;}
+    </style>
+{% endblock %}
+
+{% block content %}
+<div id="MainView" class="l">
+    <div class="addTable">
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <h1>添加服务</h1>
+            </div>
+            <div class="userInfo clear">
+                <label for="worker">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+                <select id="worker" name="worker">
+                    {% for worker in workers %}
+                        <option value="{{worker.account}}">{{worker.username}}({{worker.account}})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="clear">
+                <label for="timeType">时间类型</label>
+                <select id="timeType" name="timeType">
+                    <option value="hour">小时计费</option>
+                    <option value="month">月计费</option>
+                </select>
+            </div>
+            <div class="clear">
+                <label for="serviceType"></label>
+                <select id="serviceType" name="serviceType">
+                    <option value="0">保姆</option>
+                    <option value="1">清洁工</option>
+                </select>
+            </div>
+            <div>
+                <label for="">图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片</label>
+                <input type="file" name="upload">
+            </div>
+            <div>
+                <input class="submitbtn" type="submit" value="提交">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

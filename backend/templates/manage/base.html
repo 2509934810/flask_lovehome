@@ -44,7 +44,7 @@
         <div class="MainInfo r">
             我的信息
             <ul>
-                <li><a href="#">查看信息</a></li>
+                <li><a href="{{url_for('user.index')}}">查看信息</a></li>
                 <li><a href="#">修改信息</a></li>
                 <li><a href="/auth/logout">退出登录</a></li>
                 <li><a href="#">修改密码</a> </li>
@@ -53,17 +53,39 @@
     </div>
     <div id="SideBar" class="l clear">
         <ul>
-            <li><a href="{{url_for('admin.indexs')}}">成员管理</a></li>
-            <li><a>服务展示</a></li>
-            <li><a>资金流动</a></li>
+            <li><a href="{{url_for('manage.index')}}">成员列表</a></li>
+            {% if g.user['level'] >= 16 %}
+                <li><a href="{{url_for('manage.worker')}}">员工管理</a></li>
+                <li><a href="{{url_for('manage.service')}}">服务管理</a></li>
+                <li><a>资金流动</a></li>
+            {% elif g.user['level'] >= 8 %}
+                <li><a href="{{url_for('manage.service')}}">服务管理</a></li>
+            {% endif %}
             <li><a>投诉信箱</a></li>
             <li><a>合作伙伴</a></li>
         </ul>
     </div>
     {% block content %}
     {% endblock %}
+    <!-- <div id="bottom" class="container-fluid">
+        <div class="container">
+          <p>Copyright by Lovehome 2020</p>
+          <a href="#">合作</a>
+          <a href="#">招聘|</a>
+          <a href="#">投资|</a>
+          <a href="#">技术支持|</a>
+        </div>
+      </div> -->
+    <script src="{{ url_for('static', filename='js/axios.js') }}"></script>
+    <script>
+        // axios({
+        //     method: 'get',
+        //     url: '/api'
+        // })
+    </script>
     {% block script %}
 
     {%endblock%}
+
 </body>
 </html>

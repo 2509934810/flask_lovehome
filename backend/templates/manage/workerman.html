@@ -1,0 +1,57 @@
+{% extends 'manage/base.html' %}
+
+{% block style %}
+<!-- <link rel="stylesheet" href="../static/css/common.css"> -->
+<style>
+  .Main{width: 90%; position: relative; margin-top: 20px;}
+  .Main table{width: 100%;}
+  .timezone{width: 80%; margin-top: 10px;}
+  .timezone input{display: block; width: 20%; margin-left: 5%; height: 30px;}
+  .timezone a{display: block; width: 10%; height: 30px; line-height: 30px;
+      float: left; text-align: center; margin-left: 5%; background-color: lightseagreen;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="MainView" class="l">
+  <div class="top clear">
+      <div class="timezone l">
+          <input type="text" placeholder="时间区间" id="searchId" class="l">
+          <input type="text" placeholder="几周前" id="searchId" class="l">
+          <a id="runSearch">搜索</a>
+      </div>
+  </div>
+  <div class="dataPic container-fluid" id="datapic" style="width: 400px; height: 400px;">
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById("datapic"));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '第一个 ECharts 实例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+    myChart.setOption(option);
+
+</script>
+{% endblock %}

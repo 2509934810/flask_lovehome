@@ -1,0 +1,88 @@
+{% extends 'manage/base.html' %}
+
+{% block style %}
+<!-- <link rel="stylesheet" href="../static/css/common.css"> -->
+<style>
+  .Main{width: 90%; position: relative; margin-top: 20px;}
+  .Main table{width: 100%;}
+  .timezone{width: 80%; margin-top: 10px;}
+  .timezone input{display: block; width: 20%; margin-left: 5%; height: 30px;}
+  .timezone a{display: block; width: 10%; height: 30px; line-height: 30px;
+      float: left; text-align: center; margin-left: 5%; background-color: lightseagreen;}
+  /* .workerman h1{font-size: 28px; text-align: center;}
+  .workerman ul li .manInfo{float: left; margin-left: 5%; width: 30%; height: 180px;
+    background-color: lightskyblue; text-align: center; line-height: 30px;}
+  .workerman ul li .manInfo a{width: 100%; height: 100%; display: block;}
+  .workerman ul li .manInfo a:hover{border: 1px solid blue; cursor: pointer;}
+  .workerman ul li table{width: 100%; height: 100%; display: block;}
+  .workerman ul li td{width: 30%; height: 40px;} */
+
+  .workerman{width: 20%;float: left;}
+  .workerman h1{text-align: center;}
+  .workerman ul{width: 100%; background-color: lightslategrey;}
+  .workerman ul li{width: 100%; background-color: lightskyblue; text-align: center; height: 35px;
+    margin-top: 20px;}
+  .workerman ul li a{display: block; width: 100%; height: 100%;}
+  .workerman ul li a:hover{}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="MainView" class="l">
+  <!-- <div class="top clear">
+      <div class="timezone l">
+          <input type="text" placeholder="时间区间" id="searchId" class="l">
+          <input type="text" placeholder="几周前" id="searchId" class="l">
+          <a id="runSearch">搜索</a>
+      </div>
+  </div> -->
+  <div class="Main container-fluid">
+    <div class="workerman">
+      <h1>管理层</h1>
+      <ul>
+        {% for man in userInfo.manage %}
+          <li>
+            <a>{{man.username}}的团队</a>
+            <!-- <div class="manInfo">
+              <a href="#">
+                <table border="1" style="border-collapse: collapse;">
+                  <tbody>
+                    <td>名称</td>
+                    <td>{{man.username}}</td>
+                    <td colspan="2"><img src="{{url_for('static', filename='img/Worker.jpg')}}" alt="头像" width="100%" height="100%"></td>
+                  </tbody>
+                  <tbody>
+                    <td>性别</td>
+                    <td>{{man.sex}}</td>
+                    <td>年龄</td>
+                    <td>{{man.age}}</td>
+                  </tbody>
+                  <tbody>
+                    <td>职位</td>
+                    {% if man.level == 16 %}
+                    <td>经理</td>
+                    {% else %}
+                    <td>经理</td>
+                    {% endif %}
+                  </tbody>
+                </table>
+              </a>
+              <div class="btn">
+                <a href="">他管理的员工</a>
+              </div>
+            </div> -->
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="worker container clear">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script type="text/javascript">
+</script>
+{% endblock %}
