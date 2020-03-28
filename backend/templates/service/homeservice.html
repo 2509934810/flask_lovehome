@@ -32,26 +32,18 @@
     </div>
     <div>
         <ul class="clear">
+            {% for service in serviceInfo %}
             <li>
                 <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
+                    <a><img src="{{url_for('static', filename=service.head_photo)}}" alt="1" width="100%" height="60%"></a>
+                    <h5>{{service.user_account}}</h5>
                     <div class="workershow">
                         <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
                     </div>
                     <button class="clear">预约</button>
                 </div>
             </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
+            {% endfor %}
             <li>
                 <div class="worker">
                     <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>

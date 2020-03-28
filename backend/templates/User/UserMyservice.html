@@ -1,0 +1,78 @@
+{% extends 'User/base.html' %}
+
+
+{% block title %}
+<title>
+    我的服务
+</title>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .yourchange{text-align: center; margin-top: 10px; font-size: 21px;}
+        .btngroup{width: 80%; margin: 10px auto;}
+        .btngroup a{margin-left: 10%;}
+        .serviceTable{margin-top: 20px;}
+        .serviceTable table{width: 80%; margin: 0 auto; text-align: center;}
+        .serviceTable table .singPage{width: 100%; border: 1px solid black;}
+        .serviceTable table td{width: 10%;}
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="UserBaseInfo r">
+    <div class="yourchange">
+        {% if g.user['level'] < 8 %}
+            <h1>尊敬的客户</h1>
+        {% elif g.user['level'] < 32 %}
+            <h1>尊敬的员工</32>
+        {% else %}
+            <h1>尊敬的管理员</h1>
+            <div>
+                <button>我的服务</button>
+                <button>我的</button>
+            </div>
+        {% endif %}
+    </div>
+    <div class="btngroup">
+        <a href="{{url_for('user.service')}}">服务列表</a>
+        <a href="{{url_for('user.myservice')}}">已支持的服务</a>
+        <a>未处理</a>
+        <a>进行中</a>
+        <a>已支付</a>
+        <span class="r">服务数量: 2</span>
+    </div>
+    <div class="serviceTable">
+        <div style="border: 1px solid black; border-radius: 30px;">
+            <table style="border-collapse:separate;">
+                <thead>
+                    <td>账号</td>
+                    <td>姓名</td>
+                    <td>时间类型</td>
+                    <td>服务类型</td>
+                    <td>平均工资</td>
+                    <td>居住地址</td>
+                    <td>状态</td>
+
+                </thead>
+                {% for service in serviceInfo %}
+                    <tbody>
+                        <td>{{userInfo.account}}</td>
+                        <td>{{userInfo.username}}</td>
+                        <td>{{service.timeType}}</td>
+                        <td>{{service.serviceType}}</td>
+                        <td>{{service.avg_salary}}</td>
+                        <td>{{service.live_addr}}</td>
+                        <td>{{service.access}}</td>
+                        {% if service.access ==False %}
+                        <td><a href="{{url_for('user.serviceActive', id=service.id)}}">去激活</a></td>
+                        {% else %}
+                        <td><button disabled>已激活</button></td>
+                        {% endif %}
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

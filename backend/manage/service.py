@@ -57,12 +57,13 @@ def addservice():
             )
             headPhotoPath = photopath.split("static/")[1]
             # print(headPhotoPath, serviceType, timeType)
-            print(g.user.id)
+            user_id = User.query.filter_by(account=user_account).first().id
+            # print(user_id)
             service.createInfo(
                 head_photo=headPhotoPath,
                 serviceType=serviceType,
                 live_addr="aa",
-                user_id=g.user.id,
+                user_id=user_id,
                 user_account=user_account,
                 salary=200,
                 timeType=timeType,
