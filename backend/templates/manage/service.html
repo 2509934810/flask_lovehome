@@ -10,7 +10,7 @@
         /* .pushService button{width: 40%;height: 30px; margin-left: 10%; background-color: lightgreen;}
         .pushService button:hover{border: 1px solid blue;} */
         .Main{width: 90%; position: relative; margin-top: 20px;}
-        .Main table{width: 100%;}
+        .Main table{width: 100%; text-align: center;}
         .CRUD{width: 50%;height: 36px;margin-top: 5px; font-size: 10px;}
         .CRUD a{width: 40%; display: block; height: 100%;text-align: center; line-height: 36px; background-color: gray;margin-left: 5%;}
     </style>
@@ -57,13 +57,30 @@
                 <td><input type="checkbox" id="MainCheck"></td>
                 <td>编号</td>
                 <td>员工ID</td>
-                <td>员工姓名</td>
+                <td>员工等级</td>
                 <td>服务类型</td>
-                <td>员工联系方式</td>
-                <td>客户联系方式</td>
-                <td>客户联系地址</td>
-                <td>注册日期</td>
+                <td>服务地点</td>
+                <td>薪水</td>
+                <td>许可</td>
             </thead>
+            {% for service in serviceInfo %}
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>{{service.id}}</td>
+                    <td>{{service.user_account}}</td>
+                    <td>{{service.timeType}}</td>
+                    {% if service.serviceType == 1 %}
+                    <td>保洁</td>
+                    {% elif service.serviceType == 2 %}
+                    <td>保姆</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td>{{service.live_addr}}</td>
+                    <td>{{service.avg_salary}}</td>
+                    <td>{{service.access}}</td>
+                </tr>
+            {% endfor %}
         </table>
     </div>
 </div>

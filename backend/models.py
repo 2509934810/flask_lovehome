@@ -23,7 +23,7 @@ class User(db.Model):
     level = db.Column(db.Integer, nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # head_photo = db.relationship('Photo', backref='user', lazy='dynamic')
-    extra_info = db.relationship("WorkerServiceInfo", backref="user", lazy="dynamic")
+    extra_info = db.relationship("Info", backref="user", lazy="dynamic")
     salary_info = db.relationship("Salary", backref="user", lazy="dynamic")
     actived = db.Column(db.Boolean, nullable=False, default=False)
     loginInfo = db.relationship("loginTb", backref="user", lazy="dynamic")
@@ -58,7 +58,7 @@ class User(db.Model):
         return DbLevel == UserLevel
 
 
-class WorkerServiceInfo(db.Model):
+class Info(db.Model):
     __tablename__ = "Info"
     TIMETYPE = {
         # 家政保姆
@@ -69,22 +69,37 @@ class WorkerServiceInfo(db.Model):
     }
     SERVICETYPE = {
         "CLEANER": 1,  # 清洁工
-        "BAOJIE": 2,  # 保洁
+        "BAOMU": 2,  # bao
     }
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    head_photo = db.Column(db.String(30), nullable=False)
+    head_photo = db.Column(db.String(80), nullable=False)
     timeType = db.Column(db.Integer, nullable=False, default=1)
     serviceType = db.Column(db.Integer, nullable=False, default=1)
     live_addr = db.Column(db.Text, nullable=False)
     avg_salary = db.Column(db.Integer, nullable=False, default=0)
+    user_account = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    # 表示服务受到许可
     access = db.Column(db.Boolean, nullable=False, default=False)
 
-    def createInfo(self, head_photo, serviceType, live_addr, user_id, salary, timeType):
+    def __repr__(self):
+        return "{}".format(self.user_account)
+
+    def createInfo(
+        self,
+        head_photo,
+        serviceType,
+        live_addr,
+        user_id,
+        user_account,
+        salary,
+        timeType,
+    ):
         self.user_id = user_id
         self.head_photo = head_photo
+        self.user_account = user_account
         self.live_addr = live_addr
-        self.timeType = timeType
+        self.timeType = self.TIMETYPE.get(timeType)
         self.serviceType = self.SERVICETYPE.get(serviceType)
         self.avg_salary = self._salary(salary, timeType)
 
@@ -97,9 +112,12 @@ class WorkerServiceInfo(db.Model):
     def changeTimeType(self, timeType):
         self.timeType = self.TIMETYPE.get(timeType)
 
-    def _salary(salary, timeType, radio=1.5):
-        if self.TIMETYPE.get(timeType) > 2:
+    def _salary(self, salary, timeType, radio=1.5):
+        print(salary, timeType, self.TIMETYPE[timeType])
+        if self.TIMETYPE[timeType] > 2:
             return salary * radio
+        else:
+            return salary
 
 
 class Salary(db.Model):

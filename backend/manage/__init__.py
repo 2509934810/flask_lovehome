@@ -13,6 +13,7 @@ def require_manager():
     else:
         # print(user_id)
         user = User.query.filter_by(id=user_id).first()
+        g.user = user
         if user.level >= User.LEVEL.get("MANAGE_LOW"):
             pass
         else:
@@ -21,4 +22,6 @@ def require_manager():
 
 @manage_bp.route("/")
 def index():
-    return render_template("manage/index.html")
+    user = User.query.filter_by(level=1).all()
+    user.extend(User.query.filter_by(level=2).all())
+    return render_template("manage/index.html", userInfo=user)

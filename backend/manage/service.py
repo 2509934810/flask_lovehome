@@ -1,12 +1,14 @@
 from . import manage_bp
-from flask import render_template, redirect, g, url_for, request, jsonify
-from backend.models import User, WorkerServiceInfo
+from flask import render_template, redirect, g, url_for, request, jsonify, session
+from backend.models import User, Info
+from backend import db
 import os, random
 
 
 @manage_bp.route("/service")
 def service():
-    return render_template("manage/service.html")
+    serviceInfo = Info.query.filter_by(access=False).all()
+    return render_template("manage/service.html", serviceInfo=serviceInfo)
 
 
 @manage_bp.route("/service/spread")
@@ -36,17 +38,16 @@ def addservice():
         user = User.query.filter_by(level=4).all()
         return render_template("manage/sendService.html", workers=user)
     else:
-        worker = request.form["worker"]
+        user_account = request.form["worker"]
         timeType = request.form["timeType"]
         serviceType = request.form["serviceType"]
         img = request.files.get("upload")
-        filefront, fileend = img.filename.split(".")[0], img.filename.split(".")[1]
+        fileend = img.filename.split(".")[1]
         if fileend not in ["jpg", "png", "jpeg"]:
             return redirect(url_for("manage.index"))
         else:
             # add service todo
-            service = WorkerServiceInfo()
-            # service.createInfo()
+            service = Info()
             basepath = os.path.abspath(os.path.curdir)
             photopath = os.path.join(
                 basepath,
@@ -54,8 +55,20 @@ def addservice():
                     worker, random.randrange(1, 100000)
                 ),
             )
-            # with open(photopath, 'wb') as f:
-            #     f.write(img.encode('utf-8'))
+            headPhotoPath = photopath.split("static/")[1]
+            # print(headPhotoPath, serviceType, timeType)
+            print(g.user.id)
+            service.createInfo(
+                head_photo=headPhotoPath,
+                serviceType=serviceType,
+                live_addr="aa",
+                user_id=g.user.id,
+                user_account=user_account,
+                salary=200,
+                timeType=timeType,
+            )
+            db.session.add(service)
+            db.session.commit()
             img.save(photopath)
-            return redirect(url_for("manage.addservice"))
+            return redirect(url_for("manage.service"))
         return jsonify(request.form)

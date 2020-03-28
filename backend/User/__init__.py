@@ -5,7 +5,7 @@ user_bp = Blueprint("user", __name__, url_prefix="/user")
 
 from .UserSecurity import security
 from .UserActived import actived
-from .UserService import service
+from .UserService import *
 
 
 @user_bp.before_request

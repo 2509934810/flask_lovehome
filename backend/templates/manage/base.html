@@ -53,7 +53,7 @@
     </div>
     <div id="SideBar" class="l clear">
         <ul>
-            <li><a href="{{url_for('manage.index')}}">成员列表</a></li>
+            <li><a href="{{url_for('manage.index')}}">客户列表</a></li>
             {% if g.user['level'] >= 16 %}
                 <li><a href="{{url_for('manage.worker')}}">员工管理</a></li>
                 <li><a href="{{url_for('manage.service')}}">服务管理</a></li>

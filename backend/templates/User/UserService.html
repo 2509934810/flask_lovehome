@@ -9,7 +9,7 @@
 {% block style %}
     <style>
         .yourchange{text-align: center; margin-top: 10px; font-size: 21px;}
-        .btngroup{width: 50%; margin: 10px auto;}
+        .btngroup{width: 80%; margin: 10px auto;}
         .btngroup a{margin-left: 10%;}
         .serviceTable{margin-top: 20px;}
         .serviceTable table{width: 80%; margin: 0 auto; text-align: center;}
@@ -34,6 +34,8 @@
         {% endif %}
     </div>
     <div class="btngroup">
+        <a>服务列表</a>
+        <a href="{{url_for('user.myservice')}}">已支持的服务</a>
         <a>未处理</a>
         <a>进行中</a>
         <a>已支付</a>
