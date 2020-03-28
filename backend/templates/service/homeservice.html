@@ -14,8 +14,8 @@
         .jiaservice ul li .worker{width: 100%; height: 100%; border-radius: 20px; margin: 5%; border: 1px solid black;}
         .jiaservice ul li .worker .workershow{width: 80%; height: 18%; margin: 0 auto;}
         .jiaservice ul li .worker h5{text-align: center;}
-        .jiaservice ul li .worker button{margin: 0 auto; width: 30%; display: block; background-color: chartreuse;}
-        .jiaservice ul li .worker button:hover{border: 1px solid blue; cursor: pointer;}
+        .jiaservice ul li .worker .confirmBtn{margin: 0 auto; width: 30%; display: block; background-color: chartreuse; text-align: center;}
+        .jiaservice ul li .worker .confirmBtn:hover{border: 1px solid blue; cursor: pointer;}
         .bottomBtn a{display: block; font-size: 18px; font-weight: bold;}
     </style>
 {% endblock %}
@@ -35,115 +35,15 @@
             {% for service in serviceInfo %}
             <li>
                 <div class="worker">
-                    <a><img src="{{url_for('static', filename=service.head_photo)}}" alt="1" width="100%" height="60%"></a>
+                    <a><img src="{{url_for('static', filename=service.head_photo)}}" alt="1" width="98%" height="60%" style="border-radius: 10% ; margin: 0 auto;"></a>
                     <h5>{{service.user_account}}</h5>
                     <div class="workershow">
                         <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
                     </div>
-                    <button class="clear">预约</button>
+                    <a href="{{url_for('service.appointment')}}" class="confirmBtn clear">预约</a>
                 </div>
             </li>
             {% endfor %}
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
-            <li>
-                <div class="worker">
-                    <a><img src="{{url_for('static', filename='img/JiaZheng.jpeg')}}" alt="1" width="100%" height="60%"></a>
-                    <h5>王阿姨</h5>
-                    <div class="workershow">
-                        <p style="text-overflow: ellipsis; overflow: hidden;">简介 ： 年轻漂亮勤劳勇敢年</p>
-                    </div>
-                    <button class="clear">预约</button>
-                </div>
-            </li>
         </ul>
         <div class="bottomBtn" style="width: 80%; margin: 0 auto;">
             <a href="#" class="l">上一页</a>

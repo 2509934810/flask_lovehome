@@ -3,6 +3,8 @@ from backend.models import Info
 
 service_bp = Blueprint("service", __name__, url_prefix="/service")
 
+from .appoint import *
+
 
 @service_bp.route("/homeservice")
 def homeservice():

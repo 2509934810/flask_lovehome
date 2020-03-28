@@ -1,0 +1,97 @@
+{% extends 'service/base.html' %}
+
+{% block style %}
+<style>
+    .Mid{display: grid; grid-template-columns: repeat(12, 1fr); height: 210px;
+         background-color: lightpink; border-radius: 5%;}
+    .Mid .leftPhoto{height: 200px; background-color: rebeccapurple; grid-column-start: 2; grid-column-end: 4; margin-top: 5px;}
+    /* .Mid .top .leftPhoto{grid-column-start: 3; grid-column-end: 8; background-color: rosybrown; height: 100%;} */
+    .Mid .midBar{height: 200px; background-color: lightseagreen; grid-column-start: 6; grid-column-end: 9; margin-top: 5px;}
+    .Mid .leftBar{height: 200px; background-color: lightseagreen; grid-column-start: 10; grid-column-end: 12; margin-top: 5px;}
+    .Mid .PhotoList{ width: 80%;}
+    .PhotoList ul{margin: 0 auto;}
+    .PhotoList ul li{float: left; width: 20%; margin-left: 4%; margin-top: 5px;border: 1px solid black;}
+    .PhotoList .botHref a{}
+    .confirmbtn{margin-top: 30px;}
+    .confirmbtn a{display: block; width: 20%; height: 30px; background-color: green; line-height: 30px;text-align: center; margin: 0 auto;}
+    .confirmbtn a:hover{border: 1px solid blue;}
+</style>
+{% endblock %}
+{% block content %}
+<div class="Mid container">
+    <div class="leftPhoto">
+        <img src="" width="100%" height="100%" style="border-radius: 10%;" alt="头像">
+    </div>
+    <div class="midBar">
+        <div>
+            <span>姓名： lei1</span>
+        </div>
+        <div>
+            <span>姓名： lei1</span>
+        </div><div>
+            <span>姓名： lei1</span>
+        </div><div>
+            <span>姓名： lei1</span>
+        </div><div>
+            <span>姓名： lei1</span>
+        </div><div>
+            <span>姓名： lei1</span>
+        </div>
+    </div>
+    <div class="leftBar">
+
+    </div>
+</div>
+<div class="PhotoList container">
+    <h1>照片集</h1>
+    <ul class="clear">
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+        <li>
+            <div>
+                <img src="{{url_for('static', filename='img/Worker.jpg')}}" width="100%">
+            </div>
+        </li>
+    </ul>
+    <div class="botHref">
+        <a class="r">>>>更多</a>
+    </div>
+</div>
+<div class="confirmbtn container">
+    <a>预约</a>
+</div>
+
+{% endblock %}

@@ -59,8 +59,22 @@
                     <tbody>
                         <td>{{userInfo.account}}</td>
                         <td>{{userInfo.username}}</td>
-                        <td>{{service.timeType}}</td>
-                        <td>{{service.serviceType}}</td>
+                        {% if service.timeType == 1 %}
+                            <td>小时工</td>
+                        {% elif service.timeType == 2 %}
+                            <td>高级小时工</td>
+                        {% elif service.timeType == 4 %}
+                            <td>普通（月）</td>
+                        {% elif service.timeType == 8 %}
+                            <td>高级普通（月）</td>
+                        {% else %}
+                            <td>未知</td>
+                        {% endif %}
+                        {% if service.serviceType == 1 %}
+                            <td>清洁工</td>
+                        {% else %}
+                            <td>保姆</td>
+                        {% endif %}
                         <td>{{service.avg_salary}}</td>
                         <td>{{service.live_addr}}</td>
                         <td>{{service.access}}</td>

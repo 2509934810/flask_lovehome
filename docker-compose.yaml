@@ -1,15 +1,37 @@
 version: '3.7'
 services:
-  frontend:
-    image: nginx:latest
-    ports:
-      - 5001:80
-    volumes:
-      - /home/lei/workspace/flask_lovehome/frontend/dist:/usr/share/nginx/html
-    restart: always
+  # frontend:
+  #   image: nginx:latest
+  #   ports:
+  #     - 5001:80
+  #   volumes:
+  #     - /home/lei/workspace/flask_lovehome/frontend/dist:/usr/share/nginx/html
+  #   restart: always
   backend_1:
     image: flaskhome:latest
+    volumes:
+      - ./:/workspace/lovehome
     ports:
-      - 9999:80
-  backend_2:
-    image: flaskhome_service_1:latest
+      - 5000:5000
+    depends_on:
+      - loveDb
+      - loveRedis
+    command: flask run
+  # backend_2:
+  #   image: flaskhome_service_1:latest
+  loveDb:
+    image: mariadb:10
+    ports:
+      - 3307:3306
+    volumes:
+      - /mnt/loveDb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=lei123
+      - MYSQL_DATABASE=lei
+    restart: always
+    command: '--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
+  loveRedis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379

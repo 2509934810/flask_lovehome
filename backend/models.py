@@ -58,6 +58,10 @@ class User(db.Model):
         return DbLevel == UserLevel
 
 
+# class WorkerInfo(db.Model):
+#     pass
+
+
 class Info(db.Model):
     __tablename__ = "Info"
     TIMETYPE = {
