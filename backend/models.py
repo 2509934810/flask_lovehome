@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from backend import db
+from hashlib import md5
 
 
 class User(db.Model):
@@ -29,6 +30,7 @@ class User(db.Model):
     loginInfo = db.relationship("loginTb", backref="user", lazy="dynamic")
     sex = db.Column(db.Boolean, nullable=True)
     age = db.Column(db.Integer, nullable=False, default=0)
+    service = db.relationship("Service", backref="user", lazy="dynamic")
 
     def __repr__(self):
         return "<Post %r>" % self.account
@@ -147,11 +149,73 @@ class loginTb(db.Model):
 
 # create db
 class Service(db.Model):
-    SERVICE = {
-        "LOADING": 1,
+    ORDERTYPE = {
+        "loading": 1,
+        "received": 2,
+        "start": 4,
+        "doing": 16,
+        "done": 32,
+        "pay": 64,
     }
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    provider = db.Column(db.String(20), db.ForeignKey("user.account"))
-    shoper = db.Column(db.String(20), db.ForeignKey("user.account"))
-    serviceType = db.Column(db.Integer, nullable=False, default=1)
+    TIMECELL = {"hour": 1, "day": 2, "month": 4, "year": 8}
+    SERVICETYPE = {
+        "清洁工": 1,  # 清洁工
+        "保姆": 2,  # bao
+    }
+    id = db.Column(db.String(50), primary_key=True)
+    customerId = db.Column(db.String(20), db.ForeignKey("user.account"))
+    providerId = db.Column(db.String(20), nullable=False)
     createTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    serviceType = db.Column(db.Integer, nullable=False)
+    TimeRange = db.Column(db.Integer, nullable=False)
+    TimeCell = db.Column(db.String(10), nullable=False)
+    ServiceAddr = db.Column(db.Text, nullable=False)
+    salary = db.Column(db.Integer, nullable=False)
+    preStartTime = db.Column(db.DateTime, nullable=False)
+    startTime = db.Column(db.DateTime, nullable=True)
+    endTime = db.Column(db.DateTime, nullable=True)
+    payTime = db.Column(db.DateTime, nullable=True)
+    orderType = db.Column(db.Integer, nullable=False, default=1)
+
+    def create(
+        self,
+        customerId,
+        providerId,
+        serviceType,
+        TimeRange,
+        TimeCell,
+        ServiceAddr,
+        preStartTime,
+        cost,
+    ):
+        id = md5()
+        id.update(customerId.encode("utf-8"))
+        self.id = id.hexdigest()
+        self.customerId = customerId
+        self.providerId = providerId
+        # print(serviceType)
+        self.serviceType = serviceType
+        self.TimeRange = TimeRange
+        self.TimeCell = self.TIMECELL.get(TimeCell)
+        self.ServiceAddr = ServiceAddr
+        self.orderType = self.ORDERTYPE.get("loading")
+        self.preStartTime = preStartTime
+        self.salary = cost
+
+    def actived(self):
+        self.orderType = self.ORDERTYPE.get("received")
+
+    def start(self):
+        self.startTime = datetime.utcnow
+        self.orderType = self.ORDERTYPE.get("start")
+
+    def doing(self):
+        self.orderType = self.ORDERTYPE.get("doing")
+
+    def done(self):
+        self.endTime = datetime.utcnow
+        self.orderType = self.ORDERTYPE.get("done")
+
+    def pay(slef):
+        self.payTime = datetime.utcnow
+        self.orderType = self.ORDERTYPE.get("pay")

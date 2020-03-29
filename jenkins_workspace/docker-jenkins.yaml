@@ -13,7 +13,7 @@ services:
     image: jenkinsci/blueocean
     container_name: jenkins_server
     volumes:
-      - ./jenkins_home:/var/jenkins_home
+      - /mnt/jenkins_home:/var/jenkins_home
       - /usr/local/bin/docker:/usr/local/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
     user: root

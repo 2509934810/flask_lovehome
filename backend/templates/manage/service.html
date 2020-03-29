@@ -45,7 +45,7 @@
             <a id="runSearch">搜索</a>
         </div>
         <div class="CRUD l">
-            <a class="l">服务申请</a>
+            <a class="l" href="{{url_for('manage.serviceReq')}}">服务申请</a>
             {% if g.user['level'] >= 16 %}
             <a class="l" href="{{url_for('manage.spread')}}">服务分配</a>
             {% endif %}

@@ -1,0 +1,105 @@
+{% extends 'service/base.html' %}
+
+{% block title %}
+    <title>
+    </title>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .MainView{height: 980px;}
+        .MainView .form{width: 50%; margin: 0 auto; background-color: burlywood;margin-top: 50px;}
+        .MainView .form div{display: grid; grid-template-columns: repeat(8, 1fr);}
+        .MainView .form label{line-height: 30px; margin-top: 20px; text-align: center; grid-column-start: 2; grid-column-end: 4;}
+        .MainView .form input{width: 100%; margin: 0 auto; display: block;height: 30px; margin-top: 20px; font-size: 25px; grid-column-start: 4; grid-column-end: 7;}
+        .MainView .form .submit{width: 60%; margin-bottom: 30px; height: 40px;}
+    </style>
+{% endblock %}
+
+{% block content %}
+<input id="nonedata" type="number" style="display: none;" value="{{workInfo.avg_salary}}">
+<div class="MainView container">
+    <div class="form">
+        <form onsubmit="return check()"  method="POST">
+            <div>
+                <img>
+            </div>
+            <div>
+                <label>员工ID :</label>
+                <input type="text" name="workerId" value="{{workInfo.user_account}}">
+            </div>
+            <div>
+                <label>服务类型 :</label>
+                {% if workInfo.serviceType == 1 %}
+                <input type="text" name="serviceType" value="清洁工" >
+                {% elif workInfo.serviceType == 2 %}
+                <input type="text" name="serviceType" value="保姆"  >
+                {% else %}
+                <span>服务类型： NULL</span>
+                {% endif %}
+            </div>
+            <div>
+                <label>等级类型 :</label>
+                {% if workInfo.timeType == 1 %}
+                <input type="text" value="小时工" name="timeType" >
+                {% elif workInfo.timeType == 2 %}
+                <input type="text" value="普通" name="timeType" >
+                {% elif workInfo.timeType == 4 %}
+                <input type="text" value="高级小时工" name="timeType" >
+                {% elif workInfo.timeType == 8 %}
+                <input type="text" value="高级普通" name="timeType" >
+                {% else %}
+                <input type="text" value="NULL" name="timeType" >
+                {% endif %}
+            </div>
+            <div>
+                <label>选择开始时间 :</label>
+                <input type="date" id="startTime" name="startTime">
+            </div>
+            <div>
+                <label>服务时间 :</label>
+                <input type="number" id="serviceTime" name="timeRange">
+            </div>
+            <div>
+                <label>我的地址 :</label>
+                <input type="text" value="山西省运城市" name="myAddress">
+            </div>
+            <div>
+                <label>我的联系方式 :</label>
+                <input type="text" value="{{userInfo.telephone}}" name="mytelephone" >
+            </div>
+            <div>
+                <label>预计花费 :</label>
+                <input type="text" id="cost" value="0" name="cost" >
+            </div>
+            <div>
+                <input class="submit" type="submit" value="提交">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $("#serviceTime").blur(function(){
+        var info = $("#serviceTime").val();
+        if (info != ''){
+            var salary = $("#nonedata").val();
+            var costNum = info * salary;
+            console.log(costNum , info, salary)
+            $("#cost").attr("value", costNum);
+        }
+    })
+    function check(){
+        var cost = $("#cost").val();
+        var starttime = $("#startTime").val();
+        // console.log(cost, startTime)
+        if (cost == 0 || startTime == ''){
+            return false
+        }else{
+            return true
+        }
+    }
+</script>
+{% endblock %}

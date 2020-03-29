@@ -1,0 +1,93 @@
+{% extends 'manage/base.html' %}
+
+{% block title %}
+    <title>服务申请</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    .pushService ul li{float: left; width: 40%; height: 30px; margin-top: 5px;}
+    .pushService ul li div{width: 100%; height: 100%; overflow: hidden; background-color:gray;}
+    .pushService ul li div a{display: block; width: 100%; height: 100%; font-size: 10px;}
+    .CRUD{width: 50%;height: 36px;margin-top: 5px; font-size: 10px;}
+    .CRUD a{width: 40%; display: block; height: 100%;text-align: center; line-height: 36px; background-color: gray;margin-left: 5%;}
+    .Main{width: 100%; position: relative; margin-top: 20px;}
+    .Main table{width: 100%; text-align: center;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="MainView" class="l">
+    <div class="topBar">
+        <div class="pushService">
+            <ul>
+                <li>
+                    <div>
+                        <a href="{{url_for('manage.addservice')}}">服务发布</a>
+                    </div>
+                </li>
+                {% if g.user['level'] >= 16 %}
+                <li>
+                    <div>
+                        <a>服务列表</a>
+                    </div>
+                </li>
+                {% endif %}
+                <li>
+                    <div>
+                        <a onclick="">服务撤销</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="explore">
+            <input type="text" placeholder="请输入搜索的编号" id="searchId">
+            <a id="runSearch">搜索</a>
+        </div>
+        <div class="CRUD">
+            <a class="l" href="{{url_for('manage.serviceReq')}}">服务申请</a>
+            {% if g.user['level'] >= 16 %}
+            <a class="l" href="{{url_for('manage.spread')}}">服务分配</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="Main">
+        <table border="1" style="border-collapse: collapse;">
+            <thead>
+                <td><input type="checkbox"></td>
+                <td>订单编号</td>
+                <td>客户账号</td>
+                <td>员工账号</td>
+                <td>发起时间</td>
+                <td>服务类型</td>
+                <td>服务时间</td>
+                <td>服务地点</td>
+                <td>客户联系方式</td>
+                <td>技工联系方式</td>
+                <td>应付金额</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
+                <td>服务状态</td>
+            </thead>
+            {% for service in services %}
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>{{service.id}}</td>
+                <td>{{service.customerId}}</td>
+                <td>{{service.providerId}}</td>
+                <td>{{service.createTime}}</td>
+                <td>{{service.serviceType}}</td>
+                <td>{{service.preStartTime}}</td>
+                <td>{{service.ServiceAddr}}</td>
+                <td>客户电弧</td>
+                <td>技工电话</td>
+                <td>{{service.salary}}</td>
+                <td>{{service.startTime}}</td>
+                <td>{{service.endTime}}</td>
+                <td>{{service.orderType}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

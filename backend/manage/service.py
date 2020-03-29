@@ -1,14 +1,20 @@
 from . import manage_bp
 from flask import render_template, redirect, g, url_for, request, jsonify, session
-from backend.models import User, Info
+from backend.models import User, Info, Service
 from backend import db
 import os, random
 
 
 @manage_bp.route("/service")
 def service():
-    serviceInfo = Info.query.filter_by(access=False).all()
+    serviceInfo = Info.query.all()
     return render_template("manage/service.html", serviceInfo=serviceInfo)
+
+
+@manage_bp.route("/service/req")
+def serviceReq():
+    services = Service.query.all()
+    return render_template("manage/serviceReq.html", services=services)
 
 
 @manage_bp.route("/service/spread")

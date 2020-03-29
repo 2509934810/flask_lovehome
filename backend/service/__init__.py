@@ -1,9 +1,17 @@
-from flask import Blueprint, render_template
-from backend.models import Info
+from flask import Blueprint, render_template, session, g
+from backend.models import Info, User
 
 service_bp = Blueprint("service", __name__, url_prefix="/service")
 
 from .appoint import *
+
+
+def get_g():
+    user = session.get("user_id")
+    if user:
+        g.user = User.query.filter_by(id=user).first()
+    else:
+        g.user = None
 
 
 @service_bp.route("/homeservice")

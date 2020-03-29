@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import click
 from flask.cli import with_appcontext
@@ -71,5 +71,10 @@ def create_app(test_config=None):
     @app.route("/")
     def index():
         return render_template("index.html")
+
+    @app.route("/404")
+    def pageNotFound():
+        data = {"code": 404, "info": "page not found"}
+        return jsonify(data)
 
     return app
