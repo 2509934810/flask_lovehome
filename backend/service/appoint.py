@@ -49,6 +49,7 @@ def confirmService(id):
                 ServiceAddr=myAddress,
                 preStartTime=startTime,
                 cost=cost,
+                customerTel=mytelephone,
             )
             db.session.add(service)
             db.session.commit()

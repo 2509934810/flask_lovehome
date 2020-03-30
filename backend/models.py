@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from backend import db
 from hashlib import md5
+import random
 
 
 class User(db.Model):
@@ -149,14 +150,7 @@ class loginTb(db.Model):
 
 # create db
 class Service(db.Model):
-    ORDERTYPE = {
-        "loading": 1,
-        "received": 2,
-        "start": 4,
-        "doing": 16,
-        "done": 32,
-        "pay": 64,
-    }
+    ORDERTYPE = {"loading": 1, "received": 2, "start": 4, "done": 8, "pay": 16}
     TIMECELL = {"hour": 1, "day": 2, "month": 4, "year": 8}
     SERVICETYPE = {
         "清洁工": 1,  # 清洁工
@@ -165,6 +159,8 @@ class Service(db.Model):
     id = db.Column(db.String(50), primary_key=True)
     customerId = db.Column(db.String(20), db.ForeignKey("user.account"))
     providerId = db.Column(db.String(20), nullable=False)
+    customerTel = db.Column(db.String(15), nullable=True)
+    providerTel = db.Column(db.String(15), nullable=True)
     createTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     serviceType = db.Column(db.Integer, nullable=False)
     TimeRange = db.Column(db.Integer, nullable=False)
@@ -187,9 +183,12 @@ class Service(db.Model):
         ServiceAddr,
         preStartTime,
         cost,
+        customerTel
+        # providerTel
     ):
         id = md5()
-        id.update(customerId.encode("utf-8"))
+        key = customerId + str(random.randrange(1, 10000000))
+        id.update(key.encode("utf-8"))
         self.id = id.hexdigest()
         self.customerId = customerId
         self.providerId = providerId
@@ -201,6 +200,8 @@ class Service(db.Model):
         self.orderType = self.ORDERTYPE.get("loading")
         self.preStartTime = preStartTime
         self.salary = cost
+        self.providerTel = "12312441241"
+        self.customerTel = customerTel
 
     def actived(self):
         self.orderType = self.ORDERTYPE.get("received")

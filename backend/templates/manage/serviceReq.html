@@ -13,6 +13,10 @@
     .CRUD a{width: 40%; display: block; height: 100%;text-align: center; line-height: 36px; background-color: gray;margin-left: 5%;}
     .Main{width: 100%; position: relative; margin-top: 20px;}
     .Main table{width: 100%; text-align: center;}
+    /* .Main table tr{display: block;} */
+    .Main table tr td{width: 6%; }
+    .Main table tr td a{width: 80%; height: 80%; display: block; background-color: green;margin: 0 auto;}
+
 </style>
 {% endblock %}
 
@@ -53,7 +57,7 @@
     </div>
     <div class="Main">
         <table border="1" style="border-collapse: collapse;">
-            <thead>
+            <tr>
                 <td><input type="checkbox"></td>
                 <td>订单编号</td>
                 <td>客户账号</td>
@@ -62,29 +66,47 @@
                 <td>服务类型</td>
                 <td>服务时间</td>
                 <td>服务地点</td>
-                <td>客户联系方式</td>
-                <td>技工联系方式</td>
+                <td>客户联系</td>
+                <td>技工联系</td>
                 <td>应付金额</td>
                 <td>开始时间</td>
                 <td>结束时间</td>
                 <td>服务状态</td>
-            </thead>
+                <td>处理状态</td>
+            </tr>
             {% for service in services %}
             <tr>
                 <td><input type="checkbox"></td>
-                <td>{{service.id}}</td>
+                <td title="{{service.id}}" >{{service.id[:5]}}</td>
                 <td>{{service.customerId}}</td>
                 <td>{{service.providerId}}</td>
                 <td>{{service.createTime}}</td>
                 <td>{{service.serviceType}}</td>
                 <td>{{service.preStartTime}}</td>
                 <td>{{service.ServiceAddr}}</td>
-                <td>客户电弧</td>
-                <td>技工电话</td>
+                <td>{{service.customerTel}}</td>
+                <td>{{service.customerTel}}</td>
                 <td>{{service.salary}}</td>
                 <td>{{service.startTime}}</td>
                 <td>{{service.endTime}}</td>
-                <td>{{service.orderType}}</td>
+                {% if service.orderType == 1 %}
+                <td>未处理</td>
+                {% elif service.orderType == 2 %}
+                <td>已处理</td>
+                {% elif service.orderType == 4 %}
+                <td>已开始</td>
+                {% elif service.orderType == 8 %}
+                <td>未支付</td>
+                {% elif service.orderType == 16 %}
+                <td>已支付</td>
+                {% else %}
+                <td>未知</td>
+                {% endif %}
+                {% if service.orderType == 1 %}
+                <td id="confirmButton"><a href="{{url_for('manage.confirmservice', id=service.id)}}">同意</a></td>
+                {% else %}
+                <td>已处理</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </table>

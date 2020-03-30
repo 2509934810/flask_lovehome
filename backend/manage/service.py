@@ -11,10 +11,29 @@ def service():
     return render_template("manage/service.html", serviceInfo=serviceInfo)
 
 
+@manage_bp.route("/service/delete/<id>")
+def delservice(id):
+    service = Service.query.filter_by(id=id).first()
+    if service:
+        db.session.delete(service)
+        db.session.commit()
+    else:
+        return redirect(url_for("pageNotFound"))
+
+
 @manage_bp.route("/service/req")
 def serviceReq():
     services = Service.query.all()
     return render_template("manage/serviceReq.html", services=services)
+
+
+@manage_bp.route("/service/req/confirm/<id>")
+def confirmservice(id):
+    service = Service.query.filter_by(id=id).first()
+    service.orderType = 2
+    db.session.add(service)
+    db.session.commit()
+    return redirect(url_for("manage.serviceReq"))
 
 
 @manage_bp.route("/service/spread")

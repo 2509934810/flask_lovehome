@@ -1,0 +1,105 @@
+{% extends 'User/base.html' %}
+
+
+{% block style %}
+<style>
+    .yourchange{text-align: center; margin-top: 10px; font-size: 21px;}
+    .btngroup{width: 80%; margin: 10px auto;}
+    .btngroup a{margin-left: 10%;}
+    body{background-color: gray; opacity: 0.3; z-index: 1;}
+    /* .serviceTable{margin-top: 20px; width: 80%; height: 640px; background-color: blanchedalmond; z-index: 10;} */
+    .serviceTable form{width: 30%; display: block; margin: 0 auto; background-color: lightsalmon; z-index: 10; display: block;}
+    .serviceTable form .inputData{margin-top: 30px; width: 100%; grid-template-columns: repeat(12, 1fr); height: 30px; display: grid;}
+    .serviceTable form .inputData label{grid-column-start: 2; grid-column-end: 6; font-size: 15px; line-height: 30px; overflow: hidden;}
+    .serviceTable form .inputData span{height: 100%;grid-column-start: 6; grid-column-end: 11; font-size: 25px;}
+    .serviceTable form .btngroup{display: grid; grid-template-columns: 30% 30% 30%; margin-top: 30px; margin-bottom: 30px;}
+    /* .serviceTable form .btngroup input{width: 100%;} */
+    .serviceTable form .btngroup a{display: block; width: 90%; height: 30px;background-color: lightseagreen; font-size: 10px; line-height: 30px; text-align: center;}
+    .serviceTable form .btngroup a:hover{border: 1px solid blue; cursor: pointer;}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="UserBaseInfo r">
+    <div class="yourchange">
+        {% if g.user['level'] < 4 %}
+            <h1>尊敬的客户</h1>
+        {% elif g.user['level'] < 32 %}
+            <h1>尊敬的员工</32>
+        {% else %}
+            <h1>尊敬的管理员</h1>
+            <div>
+                <button>我的服务</button>
+                <button>我的</button>
+            </div>
+        {% endif %}
+    </div>
+    <div class="btngroup">
+        {% if g.user['level'] > 2 %}
+        <a href="{{url_for('user.service')}}">服务列表</a>
+        <a href="{{url_for('user.myservice')}}">已支持的服务</a>
+        {% endif %}
+        <a href="{{url_for('user.start')}}">未开始</a>
+        <a href="{{url_for('user.doing')}}">进行中</a>
+        <a>未支付</a>
+        <a href="{{url_for('user.payed')}}">已支付</a>
+
+        <span class="r">服务数量: 2</span>
+    </div>
+    <div class="serviceTable">
+       <form>
+           <div class="inputData">
+               <label>服务编号</label>
+               <span title="{{service.id}}">{{service.id[:8]}}</span>
+           </div>
+           <div class="inputData">
+                <label>服务人员ID</label>
+                <span>{{service.providerId}}</span>
+            </div>
+            <div class="inputData">
+                <label>我的ID</label>
+               <span>{{service.customerId}}</span>
+            </div>
+            <div class="inputData">
+                <label>我的姓名</label>
+               <span>{{user.username}}</span>
+            </div>
+            <div class="inputData">
+                <label>服务类型</label>
+                {% if service.serviceType == 1 %}
+                <span>清洁工</span>
+            {% elif service.serviceType == 2 %}
+                <span>保姆</span>
+            {% else %}
+                <span>未知</span>
+            {% endif %}
+            </div>
+            <div class="inputData">
+                <label>服务时间</label>
+               <span>{{serverTime|round(4)}}{% if service.TimeCell == '1' %}
+                小时
+                {% elif service.TimeCell == '2' %}
+                    天
+                {% elif service.TimeCell == '4' %}
+                    月
+                {% elif service.TimeCell == '8' %}
+                    年
+                {% else %}
+                    未知
+                {% endif %}</span>
+            </div>
+            <div class="inputData">
+                 <!-- 后台计算 -->
+                <label>需付薪水</label>
+               <span>{{salarySum|round(4)}}元</span>
+            </div>
+            <div class="btngroup">
+                <a href="{{url_for('user.pay', id=service.id)}}">结束并支付</a>
+                <a>稍后支付</a>
+                <a onclick="">取消</a>
+            </div>
+       </form>
+    </div>
+</div>
+{% endblock %}

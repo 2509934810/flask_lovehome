@@ -1,0 +1,102 @@
+{% extends 'User/base.html' %}
+
+
+{% block style %}
+<style>
+    .yourchange{text-align: center; margin-top: 10px; font-size: 21px;}
+    .btngroup{width: 80%; margin: 10px auto;}
+    .btngroup a{margin-left: 10%;}
+    .serviceTable{margin-top: 20px;}
+    .serviceTable table{width: 80%; margin: 0 auto; text-align: center;}
+    tbody a:hover{border: 1px solid blue; cursor: pointer;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="UserBaseInfo r">
+    <div class="yourchange">
+        {% if g.user['level'] < 4 %}
+            <h1>尊敬的客户</h1>
+        {% elif g.user['level'] < 32 %}
+            <h1>尊敬的员工</32>
+        {% else %}
+            <h1>尊敬的管理员</h1>
+            <div>
+                <button>我的服务</button>
+                <button>我的</button>
+            </div>
+        {% endif %}
+    </div>
+    <div class="btngroup">
+        {% if g.user['level'] > 2 %}
+        <a href="{{url_for('user.service')}}">服务列表</a>
+        <a href="{{url_for('user.myservice')}}">已支持的服务</a>
+        {% endif %}
+        <a href="{{url_for('user.start')}}">未开始</a>
+        <a href="{{url_for('user.doing')}}">进行中</a>
+        <a>已支付</a>
+        <span class="r">服务数量: 2</span>
+    </div>
+    <div class="serviceTable">
+        <table border="1" style="border-collapse: collapse;">
+            {% for service in services %}
+                <thead>
+                    <td>服务</td>
+                    <td colspan="2">订单编号</td>
+                    <td>服务人员编号</td>
+                    <td>服务联系</td>
+                    <td>服务类型</td>
+                    <td>预定时间</td>
+                    <td>预定服务时间</td>
+                    <td>预计开销</td>
+                    <td>服务状态</td>
+                </thead>
+                <tbody>
+                    <td><input type="checkbox"></td>
+                    <td colspan="2" title="{{service.id}}">{{service.id[:10]}}</td>
+                    <td>{{service.providerId}}</td>
+                    <td>{{service.providerTel}}</td>
+                    {% if service.serviceType == 1 %}
+                            <td>清洁工</td>
+                        {% elif service.serviceType == 2 %}
+                            <td>保姆</td>
+                        {% else %}
+                            <td>未知</td>
+                        {% endif %}
+                    <td>{{service.preStartTime}}</td>
+                    <td>{{service.TimeRange}}
+                        {% if service.TimeCell == '1' %}
+                            小时
+                        {% elif service.TimeCell == '2' %}
+                            天
+                        {% elif service.TimeCell == '4' %}
+                            月
+                        {% elif service.TimeCell == '8' %}
+                            年
+                        {% else %}
+                            未知
+                        {% endif %}
+                    </td>
+                    <td>{{service.salary}}元</td>
+                    {% if service.orderType == 1 %}
+                        <td>未处理</td>
+                        {% elif service.orderType == 2 %}
+                        <td>未开始</td>
+                        {% elif service.orderType == 4 %}
+                        <td>已开始</td>
+                        {% elif service.orderType == 8 %}
+                        <td>未支付</td>
+                        {% elif service.orderType == 16 %}
+                        <td>已支付</td>
+                        {% else %}
+                        <td>未知</td>
+                        {% endif %}
+                </tbody>
+                <tbody>
+                    <td colspan="10"><a href="{{url_for('user.startService', id=service.id)}}" style="display: block; width: 30%; height: 30px; margin: 2px auto; background-color: lightgreen;">确定开始服务</a></td>
+                </tbody>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

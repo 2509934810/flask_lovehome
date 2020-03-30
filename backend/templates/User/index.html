@@ -32,6 +32,8 @@
         <tr>
           <td class="serverInfo">姓名</td>
           <td class="userData">{{g.user['username']}}</td>
+          <td class="serverInfo">账号</td>
+          <td class="userData">{{g.user['account']}}</td>
           <td class="serverInfo">性别</td>
           <td class="userData">
             {% if g.user['sex'] == None %}
@@ -51,8 +53,7 @@
           {% else %}
             0
           {% endif %}</td>
-          <td class="serverInfo">出生日期</td>
-          <td class="userData">1998-03-19</td>
+
         </tr>
         <tr>
           <td class="serverInfo">系统角色</td>
@@ -61,14 +62,17 @@
           <td class="userData">{{g.user['telephone']}}</td>
           <td class="serverInfo">邮箱</td>
           <td class="userData">{{g.user['email']}}</td>
-          <td class="serverInfo">身份证</td>
-          <td class="userData"></td>
+          <td class="serverInfo">出生日期</td>
+          <td class="userData">1998-03-19</td>
+
         </tr>
         <tr>
           <td class="serverInfo">现在住址</td>
-          <td colspan="3" class="userData"></td>
+          <td colspan="2" class="userData"></td>
           <td class="serverInfo">籍贯</td>
-          <td colspan="3" class="userData"></td>
+          <td colspan="2" class="userData"></td>
+          <td class="serverInfo">身份证</td>
+          <td class="userData"></td>
         </tr>
         <tr>
           <td class="serverInfo">紧急联系人</td>
