@@ -1,0 +1,478 @@
+# ---
+# setting:
+#   type: web
+#   authenticaton:
+#     authType: oauth
+
+# cases:
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10
+
+- name: 'test-1'
+  url: 'http://127.0.0.1:5000/'
+  headers:
+    user-agent: 'test'
+  check:
+  - checktype: 'input'
+    timeout: 10
+    checkbody:
+    - '#account'
+    - ''
+    - '#password'
+    - ''
+  - checktype: 'click'
+    checkbody:
+    - 'body > div > form > button'
+    timeout: 10

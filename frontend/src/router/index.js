@@ -6,7 +6,7 @@ import login from '@/views/Auth/Login.vue'
 import register from '@/views/Auth/Register.vue'
 import myinfo from '@/views/User/myInfo.vue'
 import notFindPage from '@/views/error/404.vue'
-import userSec from '@/views/User/userSec.vue'
+// import userSec from '@/views/User/userSec.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -33,7 +33,7 @@ export default new Router({
     },
     {
       path: '/user',
-      component: myinfo,
+      component: myinfo
     },
     {
       path: '*',

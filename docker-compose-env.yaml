@@ -17,14 +17,14 @@ services:
     restart: always
     ports:
       - 6379:6379
-  jenkins:
-    image: jenkinsci/blueocean
-    restart: always
-    ports:
-      - 8080:8080
-      - 50000:50000
-    volumes:
-      - /mnt/jenkins_home:/var/jenkins_home
-      - /usr/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
-    user: root
+  # jenkins:
+  #   image: jenkinsci/blueocean
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  #     - 50000:50000
+  #   volumes:
+  #     - /mnt/jenkins_home:/var/jenkins_home
+  #     - /usr/bin/docker:/usr/bin/docker
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   user: root

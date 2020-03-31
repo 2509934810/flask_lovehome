@@ -9,3 +9,14 @@
 [qSkipTool]2020/03/24 05:27:17 validator.go:46: input#password
 [qSkipTool]2020/03/24 05:27:17 validator.go:29: clickbody > div > form > button
 [qSkipTool]2020/03/24 05:27:17 validator.go:29: clickbody > div > form > button
+[qSkipTool]2020/03/31 01:34:13 Poll.go:32: job 数量: 28
+[qSkipTool]2020/03/31 01:34:14 Con.go:38: bad server reply status: 403 Forbidden
+[qSkipTool]2020/03/31 01:34:14 Con.go:38: bad server reply status: 403 Forbidden
+[qSkipTool]2020/03/31 01:35:04 Poll.go:32: job 数量: 28
+[qSkipTool]2020/03/31 01:35:21 validator.go:46: input#account
+[qSkipTool]2020/03/31 01:35:21 validator.go:46: input#account
+[qSkipTool]2020/03/31 01:35:31 validator.go:46: input#password
+[qSkipTool]2020/03/31 01:35:31 validator.go:46: input#password
+[qSkipTool]2020/03/31 01:35:31 validator.go:29: clickbody > div > form > button
+[qSkipTool]2020/03/31 01:35:31 validator.go:29: clickbody > div > form > button
+[qSkipTool]2020/03/31 01:56:39 Poll.go:32: job 数量: 28

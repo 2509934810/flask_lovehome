@@ -61,7 +61,7 @@ export default {
         this.nologin = false
       }
     }
-    let useraccount = JSON.parse(localStorage.getItem('user')).account
+    // let useraccount = JSON.parse(localStorage.getItem('user')).account
     this.myInfoRouter = '/#/user'
   },
   methods: {
