@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.6.9
 
 # COPY .ssh/* /root/.ssh/
 
@@ -8,11 +8,11 @@ FROM python:3.7
 
 # WORKDIR /workspace/lovehome/flask_demo_1/
 
-COPY ./ /workspace/lovehome
+COPY ./sources.list /etc/apt
 
 WORKDIR /workspace/lovehome/
 
-RUN apt update && apt install -y pipenv
+RUN apt update && pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple
 
 COPY Pipfile Pipfile.lock ./
 
@@ -24,4 +24,5 @@ ENTRYPOINT [ "flask" ]
 
 EXPOSE 5000
 EXPOSE 5001
+EXPOSE 80
 CMD ["--help"]

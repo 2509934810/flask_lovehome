@@ -1,5 +1,10 @@
 version: '3.7'
 services:
+  # traefik:
+  #   image: traefik:latest
+  #   ports:
+  #     - 443:443
+  #     - 80:80
   # frontend:
   #   image: nginx:latest
   #   ports:
@@ -8,21 +13,35 @@ services:
   #     - /home/lei/workspace/flask_lovehome/frontend/dist:/usr/share/nginx/html
   #   restart: always
   backend_1:
-    image: flaskhome:latest
+    build: ./
+    image: lovehome:1.0
     volumes:
       - ./:/workspace/lovehome
     ports:
       - 5000:5000
+    networks:
+      - lovedb
     depends_on:
       - loveDb
       - loveRedis
-    command: flask run
-  # backend_2:
-  #   image: flaskhome_service_1:latest
+    command: run -h 0.0.0.0 -p 5000
+    depends_on:
+      - loveDb
+      - loveRedis
+    environment:
+      - USERNAME=root
+      - PASSWORD=lei123
+      - HOST=loveDb
+      - PORT=3306
+      - DATABASE=lei
+      - REDIS_HOST=loveRedis:6379
+      - REDIS_DATABASE=1
   loveDb:
     image: mariadb:10
     ports:
       - 3307:3306
+    networks:
+      - lovedb
     volumes:
       - /mnt/loveDb:/var/lib/mysql
     environment:
@@ -33,5 +52,10 @@ services:
   loveRedis:
     image: redis:latest
     restart: always
+    networks:
+      - lovedb
     ports:
       - 6379:6379
+networks:
+  lovedb:
+    driver: bridge

@@ -38,8 +38,14 @@
         </div>
         <div class="Loginmenu r">
           <ul>
+            {% if g.user %}
             <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             <li id="myInfo"><a href = "{{url_for('user.index')}}">我的信息</a></li>
+            <!-- <li><span>{{ g.user['username'] }}</span></li> -->
+            {% else %}
+            <li><a href="{{ url_for('auth.register') }}">注册</a></li>
+            <li><a href="{{ url_for('auth.login') }}">登陆</a></li>
+            {% endif %}
             </li>
           </ul>
         </div>

@@ -5,3 +5,11 @@
 [qSkipTool]2020/03/31 01:31:47 Poll.go:32: job 数量: 28
 [qSkipTool]2020/03/31 01:31:48 Con.go:38: bad server reply status: 403 Forbidden
 [qSkipTool]2020/03/31 01:31:48 Con.go:38: bad server reply status: 403 Forbidden
+[qSkipTool]2020/04/01 02:11:10 Poll.go:32: job 数量: 28
+[qSkipTool]2020/04/01 02:11:11 Con.go:38: bad server reply status: 403 Forbidden
+[qSkipTool]2020/04/01 02:11:11 Con.go:38: bad server reply status: 403 Forbidden
+[qSkipTool]2020/04/01 02:11:30 Poll.go:32: job 数量: 28
+[qSkipTool]2020/04/01 02:11:38 validator.go:46: input#account
+[qSkipTool]2020/04/01 02:11:38 validator.go:46: input#account
+[qSkipTool]2020/04/01 02:11:38 validator.go:46: input#account
+[qSkipTool]2020/04/01 02:11:38 validator.go:46: input#account

@@ -5,7 +5,13 @@ from datetime import timedelta
 class BaseConfig(object):
     DEBUG = True
     DATA_PER_PAGE = 6
+    REDIS_URL = "redis://{}/{}".format(
+        os.environ.get("REDIS_HOST"), os.environ.get("REDIS_DATABASE")
+    )
     AUTH_REDIS = "redis://localhost:6379/3"
+    BASEREDIS = "redis://{}/{}".format(
+        os.environ.get("REDIS_HOST"), os.environ.get("REDIS_DATABASE")
+    )
     CELERY_BROKER_URL = ("redis://localhost:6379/1",)
     CELERY_RESULT_BACKEND = "redis://localhost:6379/2"
     CELERYBEAT_SCHEDULE = {

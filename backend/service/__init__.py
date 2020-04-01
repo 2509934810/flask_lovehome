@@ -18,3 +18,8 @@ def get_g():
 def homeservice():
     serviceInfo = Info.query.filter_by(access=True).all()
     return render_template("service/homeservice.html", serviceInfo=serviceInfo)
+
+
+# @service_bp.route('/homeservice/hour')
+# def servicehour():
+#     serviceInfo = Info.query.filter_by(access=True, ).all()

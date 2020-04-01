@@ -17,6 +17,7 @@ flask-celery-helper = "*"
 pre-commit = "*"
 requests = "*"
 flask-cors = "*"
+uwsgi = "*"
 
 [requires]
 python_version = "3.6.9"
