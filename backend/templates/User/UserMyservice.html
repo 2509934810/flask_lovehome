@@ -36,10 +36,10 @@
     </div>
     <div class="btngroup">
         {% if g.user['level'] > 2 %}
-        <a href="{{url_for('user.service')}}">服务列表</a>
-        <a href="{{url_for('user.myservice')}}">已支持的服务</a>
+        <a href="[[url_for('user.service')]]">服务列表</a>
+        <a href="[[url_for('user.myservice')]]">已支持的服务</a>
         {% endif %}
-        <a href="{{url_for('user.start')}}">未开始</a>
+        <a href="[[url_for('user.start')]]">未开始</a>
         <a>进行中</a>
         <a>已支付</a>
         <span class="r">服务数量: 2</span>
@@ -59,8 +59,8 @@
                 </thead>
                 {% for service in serviceInfo %}
                     <tbody>
-                        <td>{{userInfo.account}}</td>
-                        <td>{{userInfo.username}}</td>
+                        <td>[[userInfo.account]]</td>
+                        <td>[[userInfo.username]]</td>
                         {% if service.timeType == 1 %}
                             <td>小时工</td>
                         {% elif service.timeType == 2 %}
@@ -79,11 +79,11 @@
                         {% else %}
                             <td>未知</td>
                         {% endif %}
-                        <td>{{service.avg_salary}}</td>
-                        <td>{{service.live_addr}}</td>
-                        <td>{{service.access}}</td>
+                        <td>[[service.avg_salary]]</td>
+                        <td>[[service.live_addr]]</td>
+                        <td>[[service.access]]</td>
                         {% if service.access ==False %}
-                        <td><a href="{{url_for('user.serviceActive', id=service.id)}}">去激活</a></td>
+                        <td><a href="[[url_for('user.serviceActive', id=service.id)]]">去激活</a></td>
                         {% else %}
                         <td><button disabled>已激活</button></td>
                         {% endif %}

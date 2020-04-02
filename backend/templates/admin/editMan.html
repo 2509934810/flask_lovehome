@@ -1,0 +1,66 @@
+{% extends 'admin/base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="[[url_for('static', filename='css/common.css')]]">
+
+<style>
+    body{background-color: gray;}
+    #MainView .formCon{width: 40%; background-color: khaki; margin: 0 auto;}
+    #MainView form{width: 100%; height: 60vh; margin-top: 10px;  display: block;}
+    #MainView form .inputData{display: grid; grid-template-columns: repeat(8, 1fr); margin-top: 30px;}
+    #MainView form .inputData label{grid-column-start: 1; grid-column-end: 3; text-align: center; line-height: 30px;}
+    #MainView form .inputData input{grid-column-start: 3; grid-column-end: 7;}
+    #MainView form .inputData select{grid-column-start: 3; grid-column-end: 7;}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+    <div id="MainView">
+
+        <div class="formCon">
+            <div style="height: 30px; text-align: center; line-height: 30px; margin-top: 30px;">
+                <h2>修改信息</h2>
+            </div>
+            <form method="POST" action="[[url_for('admin.manageEdit', account=user.account)]]">
+                <!-- <div>as</div> -->
+                <div class="inputData">
+                    <label>账号</label>
+                    <input type="text" name="account" value="[[user.account]]" readonly="readonly">
+                </div>
+                <div class="inputData">
+                    <label>角色</label>
+                    {% if user.level == 1 %}
+                    <input readonly='readonly' type="text" name="level" value="普通客户">
+                    {% elif user.level == 2 %}
+                    <input readonly='readonly' type="text" name="level" value="高级客户">
+                    {% elif user.level == 4 %}
+                    <input readonly='readonly' type="text" name="level" value="线下员工">
+                    {% elif user.level == 8 %}
+                    <input readonly='readonly' type="text" name="level" value="操作员">
+                    {% elif user.level == 16 %}
+                    <input readonly='readonly' type="text" name="level" value="经理">
+                    {% elif user.level == 32 %}
+                    <input readonly='readonly' type="text" name="level" value="总监">
+                    {% elif user.level == 64 %}
+                    <input readonly='readonly' type="text" name="level" value="管理员">
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                </div>
+                <div class="inputData">
+                    <label>选择所属</label>
+                    <select name="manage">
+                        {% for user in mans %}
+                            <option value="[[user.account]]">[[user.account]][[user.username]]</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="inputData">
+                    <input type="submit" value="提交">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

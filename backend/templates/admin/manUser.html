@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="[[url_for('static', filename='css/common.css')]]">
+    <style>
+        body{background-color: bisque;}
+        #SideBar{margin-left: 20px; width: 15%; background-color: lightskyblue; height: 640px;}
+        #SideBar ul{width: 100%; height: 100%;}
+        #SideBar li{margin-top: 20px; height: 40px; text-align: center;}
+        #SideBar li a{font-size: 25px; line-height: 40px; display: block; margin: 0 auto;}
+        #SideBar li a:hover{background-color: lightseagreen;}
+        #MainView{position: relative; margin-left: 5%; width: 70%; border-top: 1px solid lightgreen}
+        #MainView .topBar{display: grid; grid-template-columns: 30% 40% 30%;}
+        #MainView .topBar li{float: left; margin-left: 20px; font-size: 15px; width: 20%; height: 40px; text-align: center;}
+        #MainView .topBar li a{display: block; width: 100%; height: 100%; border-radius: 5px; color: black; line-height: 40px;}
+        a:hover{border: 1px solid blue; cursor:pointer;}
+        #MainView .topBar span{line-height: 40px; font-size: 25px;font-weight: bold;}
+
+        #MainView .topBar .explore{margin-left: 3%;}
+        #MainView .topBar .explore input{width: 200px; height: 40px; border-radius: 5px; float: left;}
+        #MainView .topBar .explore input:hover{border: 1px solid gray;}
+        #MainView .topBar .explore a{display: block; width: 60px; height: 40px;line-height: 40px;
+            float: left; margin-left: 20px; background-color: green; border-radius: 5px; font-size: 15px; text-align: center;}
+            /* #MainInfo ul li{position:absolute; right: 30px;} */
+        .showbar{width: 70%; margin-left: 5%;}
+        .showbar .numSum{width: 100%; padding-top: 2%;}
+        .showbar .numSum li{float: left; margin-left: 5%;}
+        .numPart{width: 100%; display: grid; grid-template-columns: repeat(12, 1fr); margin-top: 10px; text-align: center;}
+        .numPart .discontrol{grid-column-start: 1; grid-column-end: 4; border: 1px solid black;}
+        .numPart .discontrol div{text-align: center; margin-top: 3px;}
+        .numPart .midMan{grid-column-start: 4; grid-column-end: 6; border: 1px solid black;}
+        .numPart .lowMan{grid-column-start: 6; grid-column-end: 8; border: 1px solid black;}
+        .numPart .worker{grid-column-start: 8; grid-column-end: 10; border: 1px solid black;}
+        .numPart .customer{grid-column-start: 10; grid-column-end: 12; border: 1px solid black}
+        .edit{width: 40%; margin: 0 auto;}
+        .edit a{display: block; width: 20%;height: 25px; text-align: center;background-color: cornflowerblue;line-height: 25px;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="top" class="container-fluid clear">
+            <div id="logo" class="l">
+              <a href="/">
+                <img src="[[ url_for('static', filename='img/index-logo.png') ]]" alt="lovehome" width="45" height="45px">
+              </a>
+            </div>
+            <div class="title">
+                <p>
+                    我爱我家后台管理
+                </p>
+            </div>
+            <div class="MainInfo r">
+                我的信息
+                <ul>
+                    <li><a href="#">查看信息</a></li>
+                    <li><a href="#">修改信息</a></li>
+                    <li><a href="/auth/logout">退出登录</a></li>
+                    <li><a href="#">修改密码</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div id="SideBar" class="l clear">
+            <ul>
+                <li><a href="[[url_for('admin.indexs')]]">成员管理</a></li>
+                <li><a href="[[url_for('admin.manage')]]">服务管理</a></li>
+                <li><a>服务展示</a></li>
+                <li><a>资金流动</a></li>
+                <li><a>投诉信箱</a></li>
+                <li><a>合作伙伴</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="edit">
+                <a onclick="manEdit()">编辑</a>
+            </div>
+        </div>
+        <div class="showbar l">
+            <!-- <h2 style="text-align: center;">人员总数</h2> -->
+            <div class="numSum" id="sums">
+                <ul>
+                    <li><span>总人数:[[numSum]]</span></li>
+                    <li><span>客户人数:[[customerSum]]</span></li>
+                    <li><span>线下员工人数:[[lineWorkersSum]]</span></li>
+                    <li><span>操作员:[[workersSum]]</span></li>
+                    <li><span>经理人数:[[lowMansSum]]</span></li>
+                    <li><span>总监人数:[[midMansSum]]</span></li>
+                </ul>
+            </div>
+            <div class="numPart">
+                <div class="discontrol">
+                    <span style="text-align: center;">未分配总人数: [[disconttrolNum]]</span>
+                    {% for user in disconttrol %}
+                        <div>
+                            <input class="spread l" style="margin-left: 2%;" type="checkbox" id="[[user.account]]">
+                            <span>[[user.account]]_{% if user.level == 1 %}
+                                普通用户
+                                {% elif user.level == 2 %}
+                                高级用户
+                                {% elif user.level == 4 %}
+                                线下员工
+                                {% elif user.level == 8 %}
+                                操作员
+                                {% elif user.level == 16 %}
+                                经理
+                                {% elif user.level == 32 %}
+                                总监
+                                {% elif user.level == 64 %}
+                                管理员
+                                {% else %}
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="midMan">
+                    <span style="text-align: center;">总监人数: </span>
+                    {% for man in midMans %}
+                        <div>
+                            <a>[[man.username]]</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="lowMan">
+                    <span style="text-align: center;">经理人数: </span>
+                    {% for man in lowMans %}
+                        <div>
+                            <a title="[[man.account]]_[[man.username[:3]]]">[[man.account]]_[[man.username[:3]]]</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="worker">
+                    <span style="text-align: center;">员工人数: </span>
+                    {% for man in workers %}
+                        <div>
+                            <a>[[man]]</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="customer">
+                    <span style="text-align: center;">线下人数: </span>
+                    {% for man in lineWorkers %}
+                        <div>
+                            <a>[[man.username]]</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <script src="[[url_for('static', filename='js/vue.min.js')]]"></script>
+    <script>
+        function manEdit() {
+            var ids = document.getElementsByClassName("spread");
+            // console.log(ids);
+            idList = []
+            for(k in ids){
+                if (ids[k].checked){
+                    idList.push(ids[k].id);
+                    break;
+                }
+            }
+            console.log(idList[0])
+            var URI = window.location.protocol +"//" + window.location.host + "/admin/manage/edit/"+ idList[0];
+            console.log(URI);
+            window.location.href= URI;
+        }
+    </script>
+</body>
+</html>

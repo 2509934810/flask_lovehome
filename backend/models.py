@@ -32,6 +32,7 @@ class User(db.Model):
     sex = db.Column(db.Boolean, nullable=True)
     age = db.Column(db.Integer, nullable=False, default=0)
     service = db.relationship("Service", backref="user", lazy="dynamic")
+    manId = db.relationship("workrel", backref="user", lazy="dynamic")
 
     def __repr__(self):
         return "<Post %r>" % self.account
@@ -63,6 +64,17 @@ class User(db.Model):
 
 # class WorkerInfo(db.Model):
 #     pass
+
+
+class workrel(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    manageId = db.Column(db.Integer, db.ForeignKey("user.id"))
+    workerId = db.Column(db.String(20), nullable=False)
+    workerType = db.Column(db.Boolean, nullable=False, default=True)
+
+    def create(self, manageId, workerId):
+        self.manageId = manageId
+        self.workerId = workerId
 
 
 class Info(db.Model):

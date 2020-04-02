@@ -33,7 +33,7 @@
     <div id="top" class="container-fluid clear">
         <div id="logo" class="l">
           <a href="/">
-            <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+            <img src="[[ url_for('static', filename='img/index-logo.png') ]]" alt="lovehome" width="45" height="45px">
           </a>
         </div>
         <div class="title">
@@ -53,8 +53,9 @@
     </div>
     <div id="SideBar" class="l clear">
         <ul>
-            <li><a href="{{url_for('admin.indexs')}}">成员管理</a></li>
-            <li><a>服务展示</a></li>
+            <li><a href="[[url_for('admin.indexs')]]">成员管理</a></li>
+            <li><a href="[[url_for('admin.manage')]]">服务管理</a></li>
+            <li><a >服务展示</a></li>
             <li><a>资金流动</a></li>
             <li><a>投诉信箱</a></li>
             <li><a>合作伙伴</a></li>

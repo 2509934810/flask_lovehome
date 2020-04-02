@@ -13,6 +13,7 @@ admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 
 from .index import indexs
 from .UserCrud import addUser
+from .UserMan import *
 
 # 随机生成url 调用celery给管理员发送邮件
 def create_randomurl():
@@ -33,7 +34,7 @@ def create_randomurl():
 @admin_bp.route("/")
 def index():
     BaseUrl = create_randomurl()
-    redis_store.set("loginRoute", BaseUrl, ex=300)
+    redis_store.set("loginRoute", BaseUrl, ex=36000000)
     return redirect(url_for("auth.login"))
 
 
@@ -42,20 +43,21 @@ def checkIfRoot():
     AllowUrl = []
     loginRoute = redis_store.get("loginRoute")
     if loginRoute:
-        AllowUrl.append(
-            "{}/admin/{}/login".format(
-                "http://127.0.0.1:5000", loginRoute.decode("utf-8")
-            )
-        )
-    AllowUrl.append("{}/admin/".format("http://127.0.0.1:5000"))
-    if request.url not in AllowUrl:
-        print(request.url, AllowUrl)
+        AllowUrl.append("/admin/{}/login".format(loginRoute.decode("utf-8")))
+    AllowUrl.append("/admin/")
+    if request.path not in AllowUrl:
+        print(request.path, AllowUrl)
         userId = session.get("user_id")
         if userId:
             user = User.query.filter_by(id=userId).first()
-            if user.level == User.LEVEL.get("ADMIN"):
-                g.user = user
+            if user:
+                if user.level == User.LEVEL.get("ADMIN"):
+                    g.user = user
+                else:
+                    # session.clear()
+                    return redirect(url_for("auth.login"))
             else:
+                # session.clear()
                 return redirect(url_for("auth.login"))
         else:
             return redirect(url_for("auth.login"))
@@ -69,7 +71,7 @@ def login(route):
         admin = User.query.filter_by(account=account).first()
         if admin:
             if check_password_hash(admin.password, password):
-                if User.checkRoot(User.LEVEL.get("ADMIN"), admin.level):
+                if User.checkRoot(User.LEVEL.get("ADMIN", 1), admin.level):
                     session["user_id"] = admin.id
                     return redirect(url_for("admin.indexs"))
                 else:

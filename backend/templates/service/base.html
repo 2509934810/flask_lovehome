@@ -6,7 +6,7 @@
     {% block title %}
 
     {% endblock %}
-    <link rel="stylesheet" href="{{url_for('static', filename = 'css/common.css')}}">
+    <link rel="stylesheet" href="[[url_for('static', filename = 'css/common.css')]]">
     <style>
         #bottom{width: 100%;}
         #bottom div{width: 100%; margin: 0 auto; position: relative;}
@@ -22,7 +22,7 @@
     <div id="top">
         <div id="logo" class="l">
           <a href="/">
-            <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+            <img src="[[ url_for('static', filename='img/index-logo.png') ]]" alt="lovehome" width="45" height="45px">
           </a>
         </div>
         <div id="top_title">
@@ -30,7 +30,7 @@
         <div id="menu" class="l">
           <ul>
             <li><a href="/">首页</a></li>
-            <li><a href="{{url_for('service.homeservice')}}">家政</a></li>
+            <li><a href="[[url_for('service.homeservice')]]">家政</a></li>
             <li><a href="#">月嫂</a></li>
             <li><a href="#">租房</a></li>
             <li><a href="#">技术支持</a></li>
@@ -39,12 +39,12 @@
         <div class="Loginmenu r">
           <ul>
             {% if g.user %}
-            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-            <li id="myInfo"><a href = "{{url_for('user.index')}}">我的信息</a></li>
-            <!-- <li><span>{{ g.user['username'] }}</span></li> -->
+            <li><a href="[[ url_for('auth.logout') ]]">Logout</a></li>
+            <li id="myInfo"><a href = "[[url_for('user.index')]]">我的信息</a></li>
+            <!-- <li><span>[[ g.user['username'] ]]</span></li> -->
             {% else %}
-            <li><a href="{{ url_for('auth.register') }}">注册</a></li>
-            <li><a href="{{ url_for('auth.login') }}">登陆</a></li>
+            <li><a href="[[ url_for('auth.register') ]]">注册</a></li>
+            <li><a href="[[ url_for('auth.login') ]]">登陆</a></li>
             {% endif %}
             </li>
           </ul>

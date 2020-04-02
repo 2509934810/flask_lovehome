@@ -68,6 +68,9 @@ def create_app(test_config=None):
 
     app.register_blueprint(manage_bp)
 
+    app.jinja_env.variable_start_string = "[["
+    app.jinja_env.variable_end_string = "]]"
+
     @app.route("/")
     def index():
         return render_template("index.html")

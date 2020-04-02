@@ -29,13 +29,13 @@
     </div>
     <div class="btngroup">
         {% if g.user['level'] > 2 %}
-        <a href="{{url_for('user.service')}}">服务列表</a>
-        <a href="{{url_for('user.myservice')}}">已支持的服务</a>
+        <a href="[[url_for('user.service')]]">服务列表</a>
+        <a href="[[url_for('user.myservice')]]">已支持的服务</a>
         {% endif %}
-        <a href="{{url_for('user.start')}}">未开始</a>
-        <a href="{{url_for('user.doing')}}">进行中</a>
+        <a href="[[url_for('user.start')]]">未开始</a>
+        <a href="[[url_for('user.doing')]]">进行中</a>
         <a>未支付</a>
-        <a href="{{url_for('user.payed')}}">已支付</a>
+        <a href="[[url_for('user.payed')]]">已支付</a>
 
 
         <span class="r">服务数量: 2</span>
@@ -58,9 +58,9 @@
                 </thead>
                 <tbody>
                     <td><input type="checkbox"></td>
-                    <td colspan="2" title="{{service.id}}">{{service.id[:10]}}</td>
-                    <td>{{service.providerId}}</td>
-                    <td>{{service.providerTel}}</td>
+                    <td colspan="2" title="[[service.id]]">[[service.id[:10]]]</td>
+                    <td>[[service.providerId]]</td>
+                    <td>[[service.providerTel]]</td>
                     {% if service.serviceType == 1 %}
                             <td>清洁工</td>
                         {% elif service.serviceType == 2 %}
@@ -68,9 +68,9 @@
                         {% else %}
                             <td>未知</td>
                         {% endif %}
-                    <td>{{service.preStartTime}}</td>
-                    <td>{{service.startTime}}</td>
-                    <td>{{service.TimeRange}}
+                    <td>[[service.preStartTime]]</td>
+                    <td>[[service.startTime]]</td>
+                    <td>[[service.TimeRange]]
                         {% if service.TimeCell == '1' %}
                             小时
                         {% elif service.TimeCell == '2' %}
@@ -83,8 +83,8 @@
                             未知
                         {% endif %}
                     </td>
-                    <td>{{service.endTime}}</td>
-                    <td>{{service.salary}}元</td>
+                    <td>[[service.endTime]]</td>
+                    <td>[[service.salary]]元</td>
                     {% if service.orderType == 1 %}
                         <td>未处理</td>
                         {% elif service.orderType == 2 %}
@@ -100,7 +100,7 @@
                         {% endif %}
                 </tbody>
                 <tbody>
-                    <td colspan="12"><a href="{{url_for('user.closeService', id=service.id)}}" style="display: block; width: 30%; height: 30px; margin: 2px auto; background-color: lightgreen;">结束服务</a></td>
+                    <td colspan="12"><a href="[[url_for('user.closeService', id=service.id)]]" style="display: block; width: 30%; height: 30px; margin: 2px auto; background-color: lightgreen;">结束服务</a></td>
                 </tbody>
                 {% endfor %}
         </table>

@@ -33,7 +33,7 @@
     <div id="top" class="container-fluid clear">
         <div id="logo" class="l">
           <a href="/">
-            <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+            <img src="[[ url_for('static', filename='img/index-logo.png') ]]" alt="lovehome" width="45" height="45px">
           </a>
         </div>
         <div class="title">
@@ -44,7 +44,7 @@
         <div class="MainInfo r">
             我的信息
             <ul>
-                <li><a href="{{url_for('user.index')}}">查看信息</a></li>
+                <li><a href="[[url_for('user.index')]]">查看信息</a></li>
                 <li><a href="#">修改信息</a></li>
                 <li><a href="/auth/logout">退出登录</a></li>
                 <li><a href="#">修改密码</a> </li>
@@ -53,13 +53,13 @@
     </div>
     <div id="SideBar" class="l clear">
         <ul>
-            <li><a href="{{url_for('manage.index')}}">客户列表</a></li>
+            <li><a href="[[url_for('manage.index')]]">客户列表</a></li>
             {% if g.user['level'] >= 16 %}
-                <li><a href="{{url_for('manage.worker')}}">员工管理</a></li>
-                <li><a href="{{url_for('manage.service')}}">服务管理</a></li>
+                <li><a href="[[url_for('manage.worker')]]">员工管理</a></li>
+                <li><a href="[[url_for('manage.service')]]">服务管理</a></li>
                 <li><a>资金流动</a></li>
             {% elif g.user['level'] >= 8 %}
-                <li><a href="{{url_for('manage.service')}}">服务管理</a></li>
+                <li><a href="[[url_for('manage.service')]]">服务管理</a></li>
             {% endif %}
             <li><a>投诉信箱</a></li>
             <li><a>合作伙伴</a></li>
@@ -76,7 +76,7 @@
           <a href="#">技术支持|</a>
         </div>
       </div> -->
-    <script src="{{ url_for('static', filename='js/axios.js') }}"></script>
+    <script src="[[ url_for('static', filename='js/axios.js') ]]"></script>
     <script>
         // axios({
         //     method: 'get',

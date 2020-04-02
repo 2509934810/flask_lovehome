@@ -42,20 +42,20 @@
       <ul>
         {% for man in userInfo.manage %}
           <li>
-            <a>{{man.username}}的团队</a>
+            <a>[[man.username]]的团队</a>
             <!-- <div class="manInfo">
               <a href="#">
                 <table border="1" style="border-collapse: collapse;">
                   <tbody>
                     <td>名称</td>
-                    <td>{{man.username}}</td>
-                    <td colspan="2"><img src="{{url_for('static', filename='img/Worker.jpg')}}" alt="头像" width="100%" height="100%"></td>
+                    <td>[[man.username]]</td>
+                    <td colspan="2"><img src="[[url_for('static', filename='img/Worker.jpg')]]" alt="头像" width="100%" height="100%"></td>
                   </tbody>
                   <tbody>
                     <td>性别</td>
-                    <td>{{man.sex}}</td>
+                    <td>[[man.sex]]</td>
                     <td>年龄</td>
-                    <td>{{man.age}}</td>
+                    <td>[[man.age]]</td>
                   </tbody>
                   <tbody>
                     <td>职位</td>

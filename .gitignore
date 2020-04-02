@@ -1,6 +1,5 @@
 .ssh/
 *.pyc
 venv/
-.env
 *.sql
 .jpg

@@ -28,12 +28,12 @@
     <form method="POST">
         <div>
             <label>账&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
-            <input type="text" id="account" name="account" disabled value="{{g.user['account']}}">
+            <input type="text" id="account" name="account" disabled value="[[g.user['account']]]">
         </div>
         <div>
             <label for="username">用&nbsp;户&nbsp;名：</label>
-            <input type="text" id="username" name="username" placeholder="{{g.user['username']}}">
-            <img width="25px" height="25px" src="{{url_for('static', filename='img/loading.gif')}}">
+            <input type="text" id="username" name="username" placeholder="[[g.user['username']]]">
+            <img width="25px" height="25px" src="[[url_for('static', filename='img/loading.gif')]]">
         </div>
         <div>
             <label for="sex">性&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
@@ -48,11 +48,11 @@
         </div>
         <div>
             <label for="email">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
-            <input type="email" name="email" id="email" placeholder="{{g.user['email']}}">
+            <input type="email" name="email" id="email" placeholder="[[g.user['email']]]">
         </div>
         <div>
             <label for="">手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
-            <input type="tel" name="telephone" id="telephone" placeholder="{{g.user['telephone']}}">
+            <input type="tel" name="telephone" id="telephone" placeholder="[[g.user['telephone']]]">
         </div>
         <div>
             <label for="">出生日期：</label>

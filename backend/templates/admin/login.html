@@ -22,7 +22,7 @@
 {% block content %}
 <div class="container-fluid">
     <div id="LoginForm" class="container">
-        <form method="POST">
+        <form method="POST" onsubmit="return checkValidate(this)">
             <div style="line-height: 40px; width: 100%;">
                 <h1 style="font-size: 30px; ">管理员登陆</h1>
             </div>
@@ -48,4 +48,34 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+    <script src="[[url_for('static', filename='js/axios.js')]]"></script>
+    <script src="[[url_for('static', filename='js/jquery.js')]]"></script>
+    <script>
+        function checkValidate() {
+            console.log('hello');
+            var account = $("#account").val();
+            var password = $("#password").val();
+            axios({
+                method: 'post',
+                url: '/api/login',
+                data: {
+                    username: account,
+                    password: password
+                }
+            }).then(function(res){
+                console.log(res);
+                if (res.data.code===200){
+                    console.log('success');
+                    localStorage.setItem(res.data.account, res.data.token)
+                    return true;
+                }else{
+                    console.log('cant login')
+                    return false;
+                }
+            });
+        }
+    </script>
 {% endblock %}

@@ -23,18 +23,18 @@
                 <li><a>整合</a></li>
                 <li><select name="selectLevel" style="width: 40px; margin-top: 10px;" onchange="window.location=this.value">
                     <option disabled>请选择</option>
-                    <option value="{{url_for('admin.indexs', userType='USER_LOW')}}">普通用户</option>
-                    <option value="{{url_for('admin.indexs', userType='USER_LOW')}}">普通用户</option>
-                    <option value="{{url_for('admin.indexs', userType='USER_MID')}}">高级用户</option>
-                    <option value="{{url_for('admin.indexs', userType='WORKER')}}">线下员工</option>
-                    <option value="{{url_for('admin.indexs', userType='MANAGE_LOW')}}">普通员工</option>
-                    <option value="{{url_for('admin.indexs', userType='MANAGE_MID')}}">经理</option>
-                    <option value="{{url_for('admin.indexs', userType='MANAGE_HIG')}}">技术总监</option>
-                    <option value="{{url_for('admin.indexs', userType='ADMIN')}}">ADMIN</option>
+                    <option value="[[url_for('admin.indexs', userType='USER_LOW')]]">普通用户</option>
+                    <option value="[[url_for('admin.indexs', userType='USER_LOW')]]">普通用户</option>
+                    <option value="[[url_for('admin.indexs', userType='USER_MID')]]">高级用户</option>
+                    <option value="[[url_for('admin.indexs', userType='WORKER')]]">线下员工</option>
+                    <option value="[[url_for('admin.indexs', userType='MANAGE_LOW')]]">普通员工</option>
+                    <option value="[[url_for('admin.indexs', userType='MANAGE_MID')]]">经理</option>
+                    <option value="[[url_for('admin.indexs', userType='MANAGE_HIG')]]">技术总监</option>
+                    <option value="[[url_for('admin.indexs', userType='ADMIN')]]">ADMIN</option>
                     </select>
                 </li>
                 <li>
-                    <span>num:{{userNum}}</span>
+                    <span>num:[[userNum]]</span>
                 </li>
             </ul>
         </div>
@@ -67,10 +67,10 @@
             {% if users%}
                 {% for user in users %}
                     <tr class="tableData">
-                        <td><input type="checkbox" name="check" id="{{user.id}}"></td>
-                        <td>{{user.id}}</td>
-                        <td>{{user.account}}</td>
-                        <td>{{user.username}}</td>
+                        <td><input type="checkbox" name="check" id="[[user.id]]"></td>
+                        <td>[[user.id]]</td>
+                        <td>[[user.account]]</td>
+                        <td>[[user.username]]</td>
                         {% if user.level == 1 %}
                             <td>普通用户</td>
                         {% elif user.level == 2 %}
@@ -89,10 +89,10 @@
                         <td></td>
                         {% endif %}
                         <!-- <td></td> -->
-                        <td>{{user.email}}</td>
-                        <td>{{user.telephone}}</td>
-                        <td>{{user.actived}}</td>
-                        <td>{{user.pub_date}}</td>
+                        <td>[[user.email]]</td>
+                        <td>[[user.telephone]]</td>
+                        <td>[[user.actived]]</td>
+                        <td>[[user.pub_date]]</td>
                     </tr>
                 {% endfor %}
             {% endif %}
@@ -101,10 +101,10 @@
             {% if curPage == 0 %}
                 <a disabled>上一页</a>
             {% else %}
-                <a href="{{url_for('admin.indexs')}}">上一页</a>
+                <a href="[[url_for('admin.indexs')]]">上一页</a>
             {% endif %}
             {% if curPage + 16 < userNum %}
-                <a href="{{request.path}}?&userType={{curType}}&num={{curPage+16}}">下一页</a>
+                <a href="[[request.path]]?&userType=[[curType]]&num=[[curPage+16]]">下一页</a>
             {% else %}
                 <a disabled>下一页</a>
             {% endif %}

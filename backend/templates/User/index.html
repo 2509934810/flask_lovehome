@@ -31,9 +31,9 @@
         </tr>
         <tr>
           <td class="serverInfo">姓名</td>
-          <td class="userData">{{g.user['username']}}</td>
+          <td class="userData">[[g.user['username']]]</td>
           <td class="serverInfo">账号</td>
-          <td class="userData">{{g.user['account']}}</td>
+          <td class="userData">[[g.user['account']]]</td>
           <td class="serverInfo">性别</td>
           <td class="userData">
             {% if g.user['sex'] == None %}
@@ -49,7 +49,7 @@
           <td class="serverInfo">年龄</td>
           <td class="userData">
           {% if g.user['age']%}
-            {{g.user['age']}}
+            [[g.user['age']]]
           {% else %}
             0
           {% endif %}</td>
@@ -57,11 +57,11 @@
         </tr>
         <tr>
           <td class="serverInfo">系统角色</td>
-          <td class="userData">{{g.user['level']}}</td>
+          <td class="userData">[[g.user['level']]]</td>
           <td class="serverInfo">手机号</td>
-          <td class="userData">{{g.user['telephone']}}</td>
+          <td class="userData">[[g.user['telephone']]]</td>
           <td class="serverInfo">邮箱</td>
-          <td class="userData">{{g.user['email']}}</td>
+          <td class="userData">[[g.user['email']]]</td>
           <td class="serverInfo">出生日期</td>
           <td class="userData">1998-03-19</td>
 
@@ -83,9 +83,9 @@
       </table>
       <div class="editButton">
         {% if g.user['actived'] %}
-          <a href="{{url_for('user.actived')}}">修改信息</a>
+          <a href="[[url_for('user.actived')]]">修改信息</a>
         {% else %}
-          <a href="{{url_for('user.actived')}}">去激活</a>
+          <a href="[[url_for('user.actived')]]">去激活</a>
         {% endif %}
       </div>
     </div>

@@ -6,7 +6,7 @@
     {% block title %}
 
     {% endblock %}
-    <link rel="stylesheet" href="{{url_for('static', filename = 'css/common.css')}}">
+    <link rel="stylesheet" href="[[url_for('static', filename = 'css/common.css')]]">
     <style>
         .MainView{position: relative; background-color: blanchedalmond; height: 980px;}
         .MainView .leftSideBar{position:absolute; left: 30px; width: 15.6%; height: 600px; border-right:1px solid gray; background-color: lightskyblue;}
@@ -27,7 +27,7 @@
     <div id="top">
         <div id="logo" class="l">
           <a href="/">
-            <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+            <img src="[[ url_for('static', filename='img/index-logo.png') ]]" alt="lovehome" width="45" height="45px">
           </a>
         </div>
         <div id="top_title">
@@ -35,7 +35,7 @@
         <div id="menu" class="l">
           <ul>
             <li><a href="/">首页</a></li>
-            <li><a href="{{url_for('service.homeservice')}}">家政</a></li>
+            <li><a href="[[url_for('service.homeservice')]]">家政</a></li>
             <li><a href="#">月嫂</a></li>
             <li><a href="#">租房</a></li>
             <li><a href="#">技术支持</a></li>
@@ -43,8 +43,8 @@
         </div>
         <div class="Loginmenu r">
           <ul>
-            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-            <!-- <li id="myInfo"><a href = "{{url_for('user.index')}}">我的信息</a></li> -->
+            <li><a href="[[ url_for('auth.logout') ]]">Logout</a></li>
+            <!-- <li id="myInfo"><a href = "[[url_for('user.index')]]">我的信息</a></li> -->
             </li>
           </ul>
         </div>
@@ -53,17 +53,17 @@
         <div class="leftSideBar">
             <ul>
                 <li>
-                    <a href = "{{url_for('user.index')}}">我的资料</a>
+                    <a href = "[[url_for('user.index')]]">我的资料</a>
                 </li>
                 <li>
-                    <a href="{{url_for('user.security')}}">账号安全</a>
+                    <a href="[[url_for('user.security')]]">账号安全</a>
                 </li>
                 <li>
                     {% if g.user['actived'] %}
                       {% if g.user['level'] >2 %}
-                        <a href="{{url_for('user.service')}}">我的服务</a>
+                        <a href="[[url_for('user.service')]]">我的服务</a>
                       {% else %}
-                        <a href="{{url_for('user.start')}}">我的服务</a>
+                        <a href="[[url_for('user.start')]]">我的服务</a>
                       {% endif %}
                     {% else %}
                       <a href="/" style="pointer-events: none">未激活服务</a>

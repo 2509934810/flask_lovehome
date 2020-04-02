@@ -35,10 +35,10 @@
             </tr>
             {% for info in loginInfo %}
             <tr>
-                <td>{{g.user['account']}}</td>
-                <td>{{ g.user['username']}}</td>
-                <td>{{info['loginTime']}}</td>
-                <td>{{info['loginSite']}}</td>
+                <td>[[g.user['account']]]</td>
+                <td>[[ g.user['username']]]</td>
+                <td>[[info['loginTime']]]</td>
+                <td>[[info['loginSite']]]</td>
             </tr>
             {% endfor %}
         </table>

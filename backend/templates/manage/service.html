@@ -23,7 +23,7 @@
             <ul>
                 <li>
                     <div>
-                        <a href="{{url_for('manage.addservice')}}">服务发布</a>
+                        <a href="[[url_for('manage.addservice')]]">服务发布</a>
                     </div>
                 </li>
                 {% if g.user['level'] >= 16 %}
@@ -45,9 +45,9 @@
             <a id="runSearch">搜索</a>
         </div>
         <div class="CRUD l">
-            <a class="l" href="{{url_for('manage.serviceReq')}}">服务申请</a>
+            <a class="l" href="[[url_for('manage.serviceReq')]]">服务申请</a>
             {% if g.user['level'] >= 16 %}
-            <a class="l" href="{{url_for('manage.spread')}}">服务分配</a>
+            <a class="l" href="[[url_for('manage.spread')]]">服务分配</a>
             {% endif %}
         </div>
     </div>
@@ -66,9 +66,9 @@
             {% for service in serviceInfo %}
                 <tr>
                     <td><input type="checkbox"></td>
-                    <td>{{service.id}}</td>
-                    <td>{{service.user_account}}</td>
-                    <td>{{service.timeType}}</td>
+                    <td>[[service.id]]</td>
+                    <td>[[service.user_account]]</td>
+                    <td>[[service.timeType]]</td>
                     {% if service.serviceType == 1 %}
                     <td>保洁</td>
                     {% elif service.serviceType == 2 %}
@@ -76,9 +76,9 @@
                     {% else %}
                     <td></td>
                     {% endif %}
-                    <td>{{service.live_addr}}</td>
-                    <td>{{service.avg_salary}}</td>
-                    <td>{{service.access}}</td>
+                    <td>[[service.live_addr]]</td>
+                    <td>[[service.avg_salary]]</td>
+                    <td>[[service.access]]</td>
                 </tr>
             {% endfor %}
         </table>

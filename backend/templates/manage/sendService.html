@@ -28,7 +28,7 @@
                 <label for="worker">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</label>
                 <select id="worker" name="worker">
                     {% for worker in workers %}
-                        <option value="{{worker.account}}">{{worker.username}}({{worker.account}})</option>
+                        <option value="[[worker.account]]">[[worker.username]]([[worker.account]])</option>
                     {% endfor %}
                 </select>
             </div>

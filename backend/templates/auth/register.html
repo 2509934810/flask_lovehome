@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet"  href="{{url_for('static', filename = 'css/common.css')}}">
+<link rel="stylesheet"  href="[[url_for('static', filename = 'css/common.css')]]">
 <style>
   /* body{background-color: gray; z-index: 1; opacity: 0.4;} */
   .container{overflow: hidden;}
@@ -28,7 +28,7 @@
 <div id="top">
   <div id="logo" class="l">
     <a href="/">
-      <img src="{{ url_for('static', filename='img/index-logo.png') }}" alt="lovehome" width="45" height="45px">
+      <img src="[[ url_for('static', filename='img/index-logo.png') ]]" alt="lovehome" width="45" height="45px">
     </a>
   </div>
   <div id="top_title">
