@@ -53,7 +53,7 @@
                     <label>选择所属</label>
                     <select name="manage">
                         {% for user in mans %}
-                            <option value="[[user.account]]">[[user.account]][[user.username]]</option>
+                            <option value="[[user.id]]">[[user.account]][[user.username]]</option>
                         {% endfor %}
                     </select>
                 </div>

@@ -39,7 +39,23 @@
                 <td>[[user.account]]</td>
                 <td>[[user.username]]</td>
                 <td>[[user.maccount]]</td>
-                <td>[[user.level]]</td>
+                {% if user.level == 1 %}
+                <td>普通用户</td>
+                {% elif user.level == 2 %}
+                <td>高级用户</td>
+                {% elif user.level == 4 %}
+                <td>线下员工</td>
+                {% elif user.level == 8 %}
+                <td>员工</td>
+                {% elif user.level == 16 %}
+                <td>经理</td>
+                {% elif user.level == 32 %}
+                <td>总监</td>
+                {% elif user.level == 64 %}
+                <td>管理员</td>
+                {% else %}
+                <td></td>
+                {% endif %}
                 <td>[[user.email]]</td>
                 <td>[[user.telephone]]</td>
                 <td>[[user.actived]]</td>

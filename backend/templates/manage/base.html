@@ -59,6 +59,7 @@
                 <li><a href="[[url_for('manage.service')]]">服务管理</a></li>
                 <li><a>资金流动</a></li>
             {% elif g.user['level'] >= 8 %}
+                <li><a href="[[url_for('manage.getuser')]]">员工列表</a></li>
                 <li><a href="[[url_for('manage.service')]]">服务管理</a></li>
             {% endif %}
             <li><a>投诉信箱</a></li>

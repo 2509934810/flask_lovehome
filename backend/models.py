@@ -33,6 +33,7 @@ class User(db.Model):
     age = db.Column(db.Integer, nullable=False, default=0)
     service = db.relationship("Service", backref="user", lazy="dynamic")
     manId = db.relationship("workrel", backref="user", lazy="dynamic")
+    maccount = db.Column(db.String(20), nullable=True)
 
     def __repr__(self):
         return "<Post %r>" % self.account

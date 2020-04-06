@@ -37,6 +37,15 @@
         .numPart .customer{grid-column-start: 10; grid-column-end: 12; border: 1px solid black}
         .edit{width: 40%; margin: 0 auto;}
         .edit a{display: block; width: 20%;height: 25px; text-align: center;background-color: cornflowerblue;line-height: 25px;}
+        .discontrol div{
+            width: 100%; height: 20px; margin-top: 1px; background-color: cadetblue;
+        }
+        .midMan div{
+            width: 100%; height: 20px; margin-top: 3px;
+        }
+        .midMan div a{
+            width: 100%; height: 100%; display: block;background-color: cadetblue;
+        }
     </style>
 </head>
 <body>
@@ -119,7 +128,7 @@
                     <span style="text-align: center;">总监人数: </span>
                     {% for man in midMans %}
                         <div>
-                            <a>[[man.username]]</a>
+                            <a title="[[man.account]]_[[man.username]]" href="[[url_for('admin.manage', manId=man.account)]]">[[man.username]]</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -127,7 +136,7 @@
                     <span style="text-align: center;">经理人数: </span>
                     {% for man in lowMans %}
                         <div>
-                            <a title="[[man.account]]_[[man.username[:3]]]">[[man.account]]_[[man.username[:3]]]</a>
+                            <a href="[[url_for('admin.manage', lowId=man.account)]]" title="[[man.account]]_[[man.username]]">[[man.account]]_[[man.username[:3]]]</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -135,7 +144,7 @@
                     <span style="text-align: center;">员工人数: </span>
                     {% for man in workers %}
                         <div>
-                            <a>[[man]]</a>
+                            <a href="[[url_for('admin.manage', workerId=man.account)]]" title="[[man.account]]_[[man.username[:3]]]">[[man.account]]_[[man.username[:3]]]</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -143,7 +152,7 @@
                     <span style="text-align: center;">线下人数: </span>
                     {% for man in lineWorkers %}
                         <div>
-                            <a>[[man.username]]</a>
+                            <a title="[[man.account]]_[[man.username[:3]]]">[[man.account]]_[[man.username[:3]]]</a>
                         </div>
                     {% endfor %}
                 </div>
